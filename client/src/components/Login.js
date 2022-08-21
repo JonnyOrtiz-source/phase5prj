@@ -1,10 +1,13 @@
 import Register from './Register';
 import { useState } from 'react';
 import { useForm } from '../hooks/useForm';
+import { useHistory } from 'react-router-dom';
 
 function Login({ handleCurrentUser }) {
    const [toggle, setToggle] = useState(true);
    const [error, setError] = useState('');
+
+   const history = useHistory();
 
    const initialData = {
       email: '',
@@ -29,9 +32,11 @@ function Login({ handleCurrentUser }) {
          if (r.ok) {
             r.json().then((user) => {
                handleCurrentUser(user);
+               history.push('/');
             });
          } else {
             r.json().then((json) => setError(json.error));
+            history.push('/login');
          }
       });
    };
@@ -41,7 +46,6 @@ function Login({ handleCurrentUser }) {
          {toggle ? (
             <div>
                <h2>Login</h2>
-               {/* {loginError && <div className="login-error">{loginError}</div>} */}
                <div className="form-center">
                   <form onSubmit={handleSubmit}>
                      <fieldset>
@@ -68,7 +72,7 @@ function Login({ handleCurrentUser }) {
                            />
                         </label>
                      </fieldset>
-                     {error && <div className="login-error">{error}.</div>}
+                     {error && <div className="error">{error}.</div>}
                      <button className="btn-submit" type="submit">
                         Login!
                      </button>

@@ -3,14 +3,18 @@ import { Switch, Route } from 'react-router-dom';
 import Nav from './Nav';
 import Login from './Login';
 import Welcome from './Welcome';
+import NewDurationForm from './duration/NewDurationForm';
+import DurationsList from './duration/DurationsList';
 
 function Main() {
    const [currentUser, setCurrentUser] = useState(null);
+   const [isAdmin, setIsAdmin] = useState(false);
 
    useEffect(() => {
       fetch('/authorized_user').then((res) => {
          if (res.ok) {
             res.json().then((user) => {
+               user.is_admin && setIsAdmin(true);
                setCurrentUser(user);
             });
          } else {
@@ -27,14 +31,26 @@ function Main() {
 
    return (
       <div className="main">
-         <Nav handleCurrentUser={handleCurrentUser} />
-
+         user:{JSON.stringify(currentUser.email)}
+         admin:{JSON.stringify(currentUser.is_admin)}
+         <Nav handleCurrentUser={handleCurrentUser} currentUser={currentUser} />
          <Switch>
+            {isAdmin && (
+               <>
+                  <Route path="/durations/new">
+                     <NewDurationForm />
+                  </Route>
+                  <Route path="/durations">
+                     <DurationsList />
+                  </Route>
+               </>
+            )}
+
             <Route path="/login">
                <Login handleCurrentUser={handleCurrentUser} />
             </Route>
 
-            <Route path="/">
+            <Route exact path="/">
                <Welcome currentUser={currentUser} />
             </Route>
          </Switch>

@@ -7,6 +7,7 @@
    --color-base--1: gray;
    --color-base--2: black;
    --color-base--3: white;
+   --color-base--4: green;
    --color-hover--1: darkgray;
 }
 
@@ -39,6 +40,7 @@ h1 {
 
 h2 {
    text-align: center;
+   color: var(--color-brand--1);
 }
 
 footer {
@@ -99,9 +101,16 @@ footer {
    font-weight: bold;
 }
 
-.login-error {
+.error {
    text-align: center;
    color: var(--color-error--1);
+   margin: 5px;
+   padding: 5px;
+}
+
+.message {
+   text-align: center;
+   color: var(--color-base--4);
    margin: 5px;
    padding: 5px;
 }
@@ -136,4 +145,26 @@ footer {
 
 .center {
    text-align: center;
+}
+
+.wrapper {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+   /* Add shadows to create the "card" effect */
+   box-shadow: 0 4px 8px 0 var(--color-brand--1);
+   transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+   box-shadow: 0 8px 16px 0 var(--color-brand--4);
+}
+
+.card-actions {
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }

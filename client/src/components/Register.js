@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { useForm } from '../hooks/useForm';
+import { useHistory } from 'react-router-dom';
 
 function Register({ handleCurrentUser }) {
    const [error, setError] = useState('');
+
+   const history = useHistory();
+
    const initialData = {
       first_name: '',
       last_name: '',
@@ -26,6 +30,7 @@ function Register({ handleCurrentUser }) {
          if (res.ok) {
             res.json().then((user) => {
                handleCurrentUser(user);
+               history.push('/');
             });
          } else {
             res.json().then((data) => setError(data.errors));
@@ -100,12 +105,12 @@ function Register({ handleCurrentUser }) {
                </fieldset>
 
                {error.email && (
-                  <div className="login-error">
+                  <div className="error">
                      {error.email && `Email ${formData.email} ${error.email}`}.
                   </div>
                )}
                {error.password_confirmation && (
-                  <div className="login-error">
+                  <div className="error">
                      Password confirmation {error.password_confirmation}
                   </div>
                )}

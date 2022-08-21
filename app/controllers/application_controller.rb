@@ -18,12 +18,11 @@ class ApplicationController < ActionController::API
     return render json: { error: "Not Authorized" }, status: :unauthorized unless current_user
   end
 
-  private
-
-
   def is_admin
-    return render json: { error: "Not Authorized" }, status: :unauthorized unless current_user.admin
+    return render json: { error: "Not Authorized" }, status: :unauthorized unless current_user.is_admin
   end
+
+  private
 
   def render_unprocessable_entity_response(invalid)
     render json: { errors: invalid.record.errors }, status: :unprocessable_entity

@@ -1,5 +1,6 @@
 function Welcome({ currentUser }) {
    const { first_name } = currentUser;
+
    return (
       <div id="welcome">
          <h2>Welcome to Serenity Springs, {first_name}!</h2>

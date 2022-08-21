@@ -8,7 +8,6 @@ export function useForm(initialState) {
       setFormData((formData) => ({ ...formData, [name]: value }));
    };
 
-   // custom hooks will often but not always return an object
    return {
       formData,
       setFormData,

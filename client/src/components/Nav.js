@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Nav({ handleCurrentUser }) {
+function Nav({ handleCurrentUser, currentUser }) {
    const logout = () => {
       fetch('/logout', {
          method: 'DELETE',
@@ -22,6 +22,15 @@ function Nav({ handleCurrentUser }) {
                   Services
                </Link>
             </li>
+
+            {currentUser.is_admin && (
+               <li className="nav-item">
+                  <Link className="nav-link" to="/durations">
+                     Durations
+                  </Link>
+               </li>
+            )}
+
             <li className="nav-item">
                <Link className="nav-link" to="/faves">
                   Faves
@@ -33,7 +42,7 @@ function Nav({ handleCurrentUser }) {
                </Link>
             </li>
             <li className="nav-item">
-               <Link className="nav-link" to="/logout" onClick={logout}>
+               <Link className="nav-link" to="/login" onClick={logout}>
                   Logout
                </Link>
             </li>
