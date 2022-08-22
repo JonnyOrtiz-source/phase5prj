@@ -72,7 +72,7 @@ footer {
 }
 
 .nav-link {
-   width: 20%; /* based on # of nav links */
+   width: 16.67%; /* based on # of nav links */
    text-decoration: none;
    color: var(--color-base--3);
 }

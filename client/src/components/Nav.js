@@ -19,11 +19,18 @@ function Nav({ handleCurrentUser, currentUser }) {
             </li>
 
             {currentUser.is_admin && (
-               <li className="nav-item">
-                  <Link className="nav-link" to="/durations">
-                     Durations
-                  </Link>
-               </li>
+               <>
+                  <li className="nav-item">
+                     <Link className="nav-link" to="/durations">
+                        Durations
+                     </Link>
+                  </li>
+                  <li className="nav-item">
+                     <Link className="nav-link" to="/service_types">
+                        Service Types
+                     </Link>
+                  </li>
+               </>
             )}
 
             <li className="nav-item">
