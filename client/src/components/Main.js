@@ -5,11 +5,14 @@ import Login from './Login';
 import Welcome from './Welcome';
 import NewDurationForm from './duration/NewDurationForm';
 import DurationsList from './duration/DurationsList';
+import NewServiceTypeForm from './serviceType/NewServiceTypeForm';
+import ServiceTypeList from './serviceType/ServiceTypeList';
 
 function Main() {
    const [currentUser, setCurrentUser] = useState(null);
    const [isAdmin, setIsAdmin] = useState(false);
    const [durations, setDurations] = useState([]);
+   const [serviceTypes, setServiceTypes] = useState([]);
 
    useEffect(() => {
       fetch('/authorized_user').then((res) => {
@@ -36,6 +39,18 @@ function Main() {
       });
    }, []);
 
+   useEffect(() => {
+      fetch('/service_types').then((res) => {
+         if (res.ok) {
+            res.json().then((serviceType) => {
+               setServiceTypes(serviceType);
+            });
+         } else {
+            console.log('No service types');
+         }
+      });
+   }, []);
+
    const handleCurrentUser = (user) => {
       setCurrentUser(user);
    };
@@ -44,16 +59,22 @@ function Main() {
       setDurations(duration);
    };
 
+   const handleServiceTypes = (serviceType) => {
+      setServiceTypes(serviceType);
+   };
+
    function addDuration(newDuration) {
       setDurations((durations) => [...durations, newDuration]);
+   }
+
+   function addServiceType(newServiceType) {
+      setServiceTypes((serviceTypes) => [...serviceTypes, newServiceType]);
    }
 
    if (!currentUser) return <Login handleCurrentUser={handleCurrentUser} />;
 
    return (
       <div className="main">
-         user:{JSON.stringify(currentUser.email)}
-         admin:{JSON.stringify(currentUser.is_admin)}
          <Nav handleCurrentUser={handleCurrentUser} currentUser={currentUser} />
          <Switch>
             {isAdmin && (
@@ -66,6 +87,16 @@ function Main() {
                         durations={durations}
                         addDuration={addDuration}
                         handleDurations={handleDurations}
+                     />
+                  </Route>
+                  <Route path="/service_types/new">
+                     <NewServiceTypeForm addServiceType={addServiceType} />
+                  </Route>
+                  <Route path="/service_types">
+                     <ServiceTypeList
+                        serviceTypes={serviceTypes}
+                        addServiceType={addServiceType}
+                        handleServiceTypes={handleServiceTypes}
                      />
                   </Route>
                </>

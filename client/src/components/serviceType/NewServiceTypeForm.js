@@ -2,24 +2,22 @@ import { useForm } from '../../hooks/useForm';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-function NewDurationForm({ addDuration }) {
+function NewServiceTypeForm({ addServiceType }) {
    const [message, setMessage] = useState('');
    const [error, setError] = useState('');
 
    const history = useHistory();
 
    const initialData = {
-      time_interval: '',
+      service_type_name: '',
    };
 
    const { formData, handleChange } = useForm(initialData);
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      if (formData.time_interval < 1) {
-         setError('Time interval must be greater than 0');
-      } else if (!(formData.time_interval % 15 === 0)) {
-         setError('Time interval must be in 15 minute increments');
+      if (!formData.service_type_name) {
+         setError('No service type entered');
       } else {
          // post it
          const configObj = {
@@ -28,16 +26,16 @@ function NewDurationForm({ addDuration }) {
             body: JSON.stringify({ ...formData }),
          };
 
-         fetch(`/durations`, configObj).then((res) => {
+         fetch(`/service_types`, configObj).then((res) => {
             if (res.ok) {
-               res.json().then((newDuration) => {
-                  addDuration(newDuration);
-                  setMessage(`${newDuration.time_interval} minutes added`);
-                  history.push('/durations');
+               res.json().then((newServiceType) => {
+                  addServiceType(newServiceType);
+                  setMessage(`${newServiceType.service_type_name} added`);
+                  history.push('/service_types');
                });
             } else {
                res.json().then((data) =>
-                  setError(data.errors.time_interval[0])
+                  setError(data.errors.service_type_name[0])
                );
             }
          });
@@ -50,22 +48,20 @@ function NewDurationForm({ addDuration }) {
             <form onSubmit={handleSubmit}>
                <fieldset>
                   <label>
-                     Time interval: &nbsp;&nbsp;
+                     Service Type: &nbsp;&nbsp;
                      <input
-                        type="number"
-                        step="15"
-                        name="time_interval"
-                        id="time_interval"
-                        value={formData.time_interval}
+                        type="text"
+                        name="service_type_name"
+                        id="service_type_name"
+                        value={formData.service_type_name}
                         onChange={handleChange}
-                     />{' '}
-                     (min)
+                     />
                   </label>
                </fieldset>
 
                {error && (
                   <div className="error">
-                     "{formData.time_interval}" {error}
+                     "{formData.service_type_name}" {error}
                   </div>
                )}
                {message && <div className="message">{message}</div>}
@@ -79,4 +75,4 @@ function NewDurationForm({ addDuration }) {
    );
 }
 
-export default NewDurationForm;
+export default NewServiceTypeForm;

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import DurationCard from './DurationCard';
-import NewDurationForm from './NewDurationForm';
+import ServiceTypeCard from './ServiceTypeCard';
+import NewServiceTypeForm from './NewServiceTypeForm';
 import Modal from 'react-modal';
 
-function DurationsList({ durations, addDuration, handleDurations }) {
+function ServiceTypeList({ serviceTypes, addServiceType, handleServiceTypes }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
    const customStyles = {
@@ -34,31 +34,31 @@ function DurationsList({ durations, addDuration, handleDurations }) {
       setIsOpen(false);
    }
 
-   const deleteDuration = (deletedDuration) => {
-      const updatedDurations = durations.filter(
-         (duration) => duration.id !== deletedDuration.id
+   const deleteServiceType = (deletedServiceType) => {
+      const updatedServiceTypes = serviceTypes.filter(
+         (serviceType) => serviceType.id !== deletedServiceType.id
       );
-      handleDurations(updatedDurations);
+      handleServiceTypes(updatedServiceTypes);
    };
 
-   const durationEl = durations.map((duration) => (
-      <DurationCard
-         key={duration.id}
-         duration={duration}
-         deleteDuration={deleteDuration}
+   const serviceTypeEl = serviceTypes.map((serviceType) => (
+      <ServiceTypeCard
+         key={serviceType.id}
+         serviceType={serviceType}
+         deleteServiceType={deleteServiceType}
       />
    ));
 
    return (
       <div>
-         <h2>All Durations</h2>
+         <h2>All Service Types</h2>
          <div className="add-btn-container">
             <button className="add-button" onClick={openModal}>
-               Add Duration
+               Add Service Type
             </button>
          </div>
 
-         <div className="wrapper"> {durationEl}</div>
+         <div className="wrapper"> {serviceTypeEl}</div>
 
          <Modal
             isOpen={modalIsOpen}
@@ -67,12 +67,14 @@ function DurationsList({ durations, addDuration, handleDurations }) {
             style={customStyles}
             contentLabel="Example Modal"
          >
-            <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Add Duration</h2>
-            <NewDurationForm addDuration={addDuration} />
+            <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
+               Add Service Type
+            </h2>
+            <NewServiceTypeForm addServiceType={addServiceType} />
             <button onClick={closeModal}>close</button>
          </Modal>
       </div>
    );
 }
 
-export default DurationsList;
+export default ServiceTypeList;
