@@ -1,5 +1,3 @@
-import React from 'react';
-
 function ServiceTypeCard({ serviceType, deleteServiceType }) {
    const { id, service_type_name } = serviceType;
 

@@ -7,12 +7,15 @@ import NewDurationForm from './duration/NewDurationForm';
 import DurationsList from './duration/DurationsList';
 import NewServiceTypeForm from './serviceType/NewServiceTypeForm';
 import ServiceTypeList from './serviceType/ServiceTypeList';
+import ServicesList from './service/ServicesList';
+import NewServiceForm from './service/NewServiceForm';
 
 function Main() {
    const [currentUser, setCurrentUser] = useState(null);
    const [isAdmin, setIsAdmin] = useState(false);
    const [durations, setDurations] = useState([]);
    const [serviceTypes, setServiceTypes] = useState([]);
+   const [services, setServices] = useState([]);
 
    useEffect(() => {
       fetch('/authorized_user').then((res) => {
@@ -37,9 +40,6 @@ function Main() {
             console.log('No durations');
          }
       });
-   }, []);
-
-   useEffect(() => {
       fetch('/service_types').then((res) => {
          if (res.ok) {
             res.json().then((serviceType) => {
@@ -47,6 +47,18 @@ function Main() {
             });
          } else {
             console.log('No service types');
+         }
+      });
+   }, []);
+
+   useEffect(() => {
+      fetch('/services').then((res) => {
+         if (res.ok) {
+            res.json().then((service) => {
+               setServices(service);
+            });
+         } else {
+            console.log('No services');
          }
       });
    }, []);
@@ -63,6 +75,10 @@ function Main() {
       setServiceTypes(serviceType);
    };
 
+   const handleServices = (service) => {
+      setServices(service);
+   };
+
    function addDuration(newDuration) {
       setDurations((durations) => [...durations, newDuration]);
    }
@@ -71,12 +87,30 @@ function Main() {
       setServiceTypes((serviceTypes) => [...serviceTypes, newServiceType]);
    }
 
+   function addService(newService) {
+      setServices((services) => [...services, newService]);
+   }
+
    if (!currentUser) return <Login handleCurrentUser={handleCurrentUser} />;
 
    return (
       <div className="main">
          <Nav handleCurrentUser={handleCurrentUser} currentUser={currentUser} />
          <Switch>
+            <Route path="/services">
+               <ServicesList
+                  services={services}
+                  addService={addService}
+                  handleServices={handleServices}
+                  durations={durations}
+                  serviceTypes={serviceTypes}
+               />
+            </Route>
+
+            <Route path="/login">
+               <Login handleCurrentUser={handleCurrentUser} />
+            </Route>
+
             {isAdmin && (
                <>
                   <Route path="/durations/new">
@@ -99,12 +133,15 @@ function Main() {
                         handleServiceTypes={handleServiceTypes}
                      />
                   </Route>
+                  <Route exact path="/services/new">
+                     <NewServiceForm
+                        addService={addService}
+                        durations={durations}
+                        serviceTypes={serviceTypes}
+                     />
+                  </Route>
                </>
             )}
-
-            <Route path="/login">
-               <Login handleCurrentUser={handleCurrentUser} />
-            </Route>
 
             <Route exact path="/">
                <Welcome currentUser={currentUser} />

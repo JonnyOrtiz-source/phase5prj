@@ -16,8 +16,8 @@ function NewDurationForm({ addDuration }) {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      if (formData.time_interval < 1) {
-         setError('Time interval must be greater than 0');
+      if (formData.time_interval < 0) {
+         setError('Time interval cannot be negative');
       } else if (!(formData.time_interval % 15 === 0)) {
          setError('Time interval must be in 15 minute increments');
       } else {
