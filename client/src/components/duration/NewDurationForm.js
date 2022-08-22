@@ -1,15 +1,18 @@
 import { useForm } from '../../hooks/useForm';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-function NewDurationForm() {
+function NewDurationForm({ addDuration }) {
    const [message, setMessage] = useState('');
    const [error, setError] = useState('');
+
+   const history = useHistory();
 
    const initialData = {
       time_interval: '',
    };
 
-   const { formData, setFormData, handleChange } = useForm(initialData);
+   const { formData, handleChange } = useForm(initialData);
 
    const handleSubmit = (e) => {
       e.preventDefault();
@@ -27,9 +30,11 @@ function NewDurationForm() {
 
          fetch(`/durations`, configObj).then((res) => {
             if (res.ok) {
-               res.json().then((data) =>
-                  setMessage(`${data.time_interval} minutes added`)
-               );
+               res.json().then((newDuration) => {
+                  addDuration(newDuration);
+                  setMessage(`${newDuration.time_interval} minutes added`);
+                  history.push('/durations');
+               });
             } else {
                res.json().then((data) =>
                   setError(data.errors.time_interval[0])
@@ -37,12 +42,11 @@ function NewDurationForm() {
             }
          });
       }
-      setFormData('');
    };
 
    return (
       <div>
-         <h2>New Duration</h2>
+         <h2>New Duration Form</h2>
          <div className="form-center">
             <form onSubmit={handleSubmit}>
                <fieldset>

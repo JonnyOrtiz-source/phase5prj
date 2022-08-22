@@ -168,3 +168,11 @@ footer {
    justify-content: center;
    align-items: center;
 }
+
+.add-btn-container {
+   overflow: hidden;
+}
+
+.add-button {
+   float: right;
+}

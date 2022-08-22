@@ -9,6 +9,7 @@ import DurationsList from './duration/DurationsList';
 function Main() {
    const [currentUser, setCurrentUser] = useState(null);
    const [isAdmin, setIsAdmin] = useState(false);
+   const [durations, setDurations] = useState([]);
 
    useEffect(() => {
       fetch('/authorized_user').then((res) => {
@@ -23,9 +24,29 @@ function Main() {
       });
    }, []);
 
+   useEffect(() => {
+      fetch('/durations').then((res) => {
+         if (res.ok) {
+            res.json().then((duration) => {
+               setDurations(duration);
+            });
+         } else {
+            console.log('No durations');
+         }
+      });
+   }, []);
+
    const handleCurrentUser = (user) => {
       setCurrentUser(user);
    };
+
+   const handleDurations = (duration) => {
+      setDurations(duration);
+   };
+
+   function addDuration(newDuration) {
+      setDurations((durations) => [...durations, newDuration]);
+   }
 
    if (!currentUser) return <Login handleCurrentUser={handleCurrentUser} />;
 
@@ -38,10 +59,14 @@ function Main() {
             {isAdmin && (
                <>
                   <Route path="/durations/new">
-                     <NewDurationForm />
+                     <NewDurationForm addDuration={addDuration} />
                   </Route>
                   <Route path="/durations">
-                     <DurationsList />
+                     <DurationsList
+                        durations={durations}
+                        addDuration={addDuration}
+                        handleDurations={handleDurations}
+                     />
                   </Route>
                </>
             )}

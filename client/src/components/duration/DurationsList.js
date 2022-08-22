@@ -1,27 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import DurationCard from './DurationCard';
-import { Link } from 'react-router-dom';
+import NewDurationForm from './NewDurationForm';
+import Modal from 'react-modal';
 
-function DurationsList() {
-   const [durations, setDurations] = useState([]);
+function DurationsList({ durations, addDuration, handleDurations }) {
+   const [modalIsOpen, setIsOpen] = useState(false);
 
-   useEffect(() => {
-      fetch('/durations').then((res) => {
-         if (res.ok) {
-            res.json().then((duration) => {
-               setDurations(duration);
-            });
-         } else {
-            console.log('No durations');
-         }
-      });
-   }, []);
+   const customStyles = {
+      content: {
+         top: '50%',
+         left: '50%',
+         right: 'auto',
+         bottom: 'auto',
+         marginRight: '-50%',
+         transform: 'translate(-50%, -50%)',
+      },
+   };
+
+   Modal.setAppElement('#root');
+
+   let subtitle;
+
+   function openModal() {
+      setIsOpen(true);
+   }
+
+   function afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      subtitle.style.color = '#f00';
+      // subtitle.style.color = '#f00';
+   }
+
+   function closeModal() {
+      setIsOpen(false);
+   }
 
    const deleteDuration = (deletedDuration) => {
       const updatedDurations = durations.filter(
          (duration) => duration.id !== deletedDuration.id
       );
-      setDurations(updatedDurations);
+      handleDurations(updatedDurations);
    };
 
    const durationEl = durations.map((duration) => (
@@ -35,8 +53,25 @@ function DurationsList() {
    return (
       <div>
          <h2>All Durations</h2>
-         <Link to="/durations/new">Add Duration</Link>
-         <div className="wrapper">{durationEl}</div>
+         <div className="add-btn-container">
+            <button className="add-button" onClick={openModal}>
+               Add Duration
+            </button>
+         </div>
+
+         <div className="wrapper"> {durationEl}</div>
+
+         <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+         >
+            <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Add Duration</h2>
+            <NewDurationForm addDuration={addDuration} />
+            <button onClick={closeModal}>close</button>
+         </Modal>
       </div>
    );
 }

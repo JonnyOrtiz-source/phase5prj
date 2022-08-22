@@ -13,11 +13,6 @@ function Nav({ handleCurrentUser, currentUser }) {
       <div>
          <ul className="nav-container">
             <li className="nav-item">
-               <Link className="nav-link" to="/">
-                  Home
-               </Link>
-            </li>
-            <li className="nav-item">
                <Link className="nav-link" to="/services">
                   Services
                </Link>
