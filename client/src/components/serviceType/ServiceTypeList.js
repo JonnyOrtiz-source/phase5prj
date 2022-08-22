@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ServiceTypeCard from './ServiceTypeCard';
 import NewServiceTypeForm from './NewServiceTypeForm';
 import Modal from 'react-modal';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 function ServiceTypeList({ serviceTypes, addServiceType, handleServiceTypes }) {
    const [modalIsOpen, setIsOpen] = useState(false);
@@ -33,6 +34,8 @@ function ServiceTypeList({ serviceTypes, addServiceType, handleServiceTypes }) {
    function closeModal() {
       setIsOpen(false);
    }
+
+   useDocumentTitle('Serenity Springs - Service Type List');
 
    const deleteServiceType = (deletedServiceType) => {
       const updatedServiceTypes = serviceTypes.filter(

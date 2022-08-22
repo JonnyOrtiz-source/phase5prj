@@ -1,5 +1,9 @@
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
+
 function Welcome({ currentUser }) {
    const { first_name } = currentUser;
+
+   useDocumentTitle('Serenity Springs - Welcome');
 
    return (
       <div id="welcome">

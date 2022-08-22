@@ -3,6 +3,7 @@ import ServiceCard from './ServiceCard';
 import { useState } from 'react';
 import NewServiceForm from './NewServiceForm';
 import Modal from 'react-modal';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 function ServicesList({
    services,
@@ -42,6 +43,8 @@ function ServicesList({
    function closeModal() {
       setIsOpen(false);
    }
+
+   useDocumentTitle('Serenity Springs - Services List');
 
    const deleteService = (deletedService) => {
       const updatedServices = services.filter(

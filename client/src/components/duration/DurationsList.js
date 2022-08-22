@@ -2,6 +2,7 @@ import { useState } from 'react';
 import DurationCard from './DurationCard';
 import NewDurationForm from './NewDurationForm';
 import Modal from 'react-modal';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 function DurationsList({ durations, addDuration, handleDurations }) {
    const [modalIsOpen, setIsOpen] = useState(false);
@@ -33,6 +34,8 @@ function DurationsList({ durations, addDuration, handleDurations }) {
    function closeModal() {
       setIsOpen(false);
    }
+
+   useDocumentTitle('Serenity Springs - Duration List');
 
    const deleteDuration = (deletedDuration) => {
       const updatedDurations = durations.filter(
