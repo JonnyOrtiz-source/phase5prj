@@ -1,5 +1,5 @@
 class ServiceSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :price, :image_url, :service_type_name, :time_interval
+  attributes :id, :name, :description, :price, :image_url, :service_type_id, :service_type_name, :duration_id, :time_interval
   # has_one :service_type
   # has_one :duration
 

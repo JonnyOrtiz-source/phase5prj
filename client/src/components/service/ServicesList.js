@@ -7,9 +7,11 @@ import Modal from 'react-modal';
 function ServicesList({
    services,
    addService,
+   updateService,
    handleServices,
    durations,
    serviceTypes,
+   isAdmin,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -52,7 +54,11 @@ function ServicesList({
       <ServiceCard
          key={service.id}
          service={service}
+         updateService={updateService}
          deleteService={deleteService}
+         isAdmin={isAdmin}
+         serviceTypes={serviceTypes}
+         durations={durations}
       />
    ));
 

@@ -91,6 +91,14 @@ function Main() {
       setServices((services) => [...services, newService]);
    }
 
+   function updateService(updatedService) {
+      const updatedServices = services.map((ogProject) =>
+         ogProject.id === updatedService.id ? updatedService : ogProject
+      );
+
+      setServices(updatedServices);
+   }
+
    if (!currentUser) return <Login handleCurrentUser={handleCurrentUser} />;
 
    return (
@@ -101,9 +109,11 @@ function Main() {
                <ServicesList
                   services={services}
                   addService={addService}
+                  updateService={updateService}
                   handleServices={handleServices}
                   durations={durations}
                   serviceTypes={serviceTypes}
+                  isAdmin={isAdmin}
                />
             </Route>
 

@@ -56,7 +56,6 @@ function NewServiceForm({ addService, durations, serviceTypes }) {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      console.log('new service clicked');
       if (!formData.name) {
          setError('No service type entered');
       } else {
