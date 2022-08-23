@@ -7,12 +7,12 @@ import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 function ServicesList({
    services,
+   currentUser,
    addService,
    updateService,
    handleServices,
    durations,
    serviceTypes,
-   isAdmin,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -56,10 +56,10 @@ function ServicesList({
    const serviceEl = services.map((service) => (
       <ServiceCard
          key={service.id}
+         currentUser={currentUser}
          service={service}
          updateService={updateService}
          deleteService={deleteService}
-         isAdmin={isAdmin}
          serviceTypes={serviceTypes}
          durations={durations}
       />

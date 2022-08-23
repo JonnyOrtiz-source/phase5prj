@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_21_230440) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_22_230219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_21_230440) do
     t.integer "time_interval"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "wishlist_id", null: false
+    t.bigint "service_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_favorites_on_service_id"
+    t.index ["wishlist_id"], name: "index_favorites_on_wishlist_id"
   end
 
   create_table "service_types", force: :cascade do |t|
@@ -56,7 +65,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_21_230440) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
   add_foreign_key "accounts", "users"
+  add_foreign_key "favorites", "services"
+  add_foreign_key "favorites", "wishlists"
   add_foreign_key "services", "durations"
   add_foreign_key "services", "service_types"
+  add_foreign_key "wishlists", "users"
 end

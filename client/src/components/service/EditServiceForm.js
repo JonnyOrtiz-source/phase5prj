@@ -67,8 +67,6 @@ function EditServiceForm({ service, updateService, serviceTypes, durations }) {
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      console.log('edit button clicked');
-
       const configObj = {
          method: 'PATCH',
          headers: { 'Content-Type': 'application/json' },

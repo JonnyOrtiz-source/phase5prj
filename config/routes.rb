@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :favorites
+  resources :wishlists
   resources :services
   resources :service_types
   resources :durations

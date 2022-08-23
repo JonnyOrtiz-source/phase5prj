@@ -2,6 +2,7 @@ class User < ApplicationRecord
     has_secure_password
 
     has_one :account
+    has_one :wishlist
 
     validates :first_name, presence: true
     validates :last_name, presence: true

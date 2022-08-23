@@ -3,10 +3,10 @@ import Modal from 'react-modal';
 import EditServiceForm from './EditServiceForm';
 
 function ServiceCard({
+   currentUser,
    service,
    deleteService,
    updateService,
-   isAdmin,
    serviceTypes,
    durations,
 }) {
@@ -71,7 +71,7 @@ function ServiceCard({
          <h5>Service Type: {service_type_name}</h5>
          {service_type_name === 'Spa' && <h5>`Duration: ${time_interval}`</h5>}
          <div className="card-actions">
-            {isAdmin && (
+            {currentUser.is_admin && (
                <>
                   <button className="add-button" onClick={openModal}>
                      ✍🏼
@@ -98,7 +98,7 @@ function ServiceCard({
                </>
             )}
             <button onClick={handleDelete}>🚫</button>
-            {!isAdmin && <button onClick={handleFave}>♡</button>}
+            {!currentUser.is_admin && <button onClick={handleFave}>♡</button>}
          </div>
       </div>
    );
