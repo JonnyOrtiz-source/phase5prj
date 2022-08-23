@@ -10,10 +10,10 @@ class DurationsController < ApplicationController
         render json: duration, status: :created
     end
 
-    def show
-        duration = Duration.find(params[:id])
-        render json: duration, status: :ok
-    end
+    # def show
+    #     duration = Duration.find(params[:id])
+    #     render json: duration, status: :ok
+    # end
 
     def update
         duration = Duration.find(params[:id])

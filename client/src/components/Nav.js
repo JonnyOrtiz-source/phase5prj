@@ -33,11 +33,14 @@ function Nav({ handleCurrentUser, currentUser }) {
                </>
             )}
 
-            <li className="nav-item">
-               <Link className="nav-link" to="/faves">
-                  Faves
-               </Link>
-            </li>
+            {!currentUser.is_admin && (
+               <li className="nav-item">
+                  <Link className="nav-link" to="/favorites">
+                     Faves
+                  </Link>
+               </li>
+            )}
+
             <li className="nav-item">
                <Link className="nav-link" to="/cart">
                   🛒 Cart

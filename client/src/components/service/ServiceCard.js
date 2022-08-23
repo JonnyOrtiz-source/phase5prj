@@ -58,17 +58,17 @@ function ServiceCard({
       deleteService(service);
    };
 
-   const handleFave = () => {
-      console.log('fave clicked');
+   const handleFave = (id) => {
+      console.log('fave clicked', id);
    };
 
    return (
       <div className="card center" key={id}>
          <img src={image_url} alt={name} />
-         <h3>{name}</h3>
-         <h5>Description: {description}</h5>
-         <h5>Price: ${price}</h5>
-         <h5>Service Type: {service_type_name}</h5>
+         <h2>{name}</h2>
+         <h3>{description}</h3>
+         <h3>Price: ${price}</h3>
+         <h3>Service Type: {service_type_name}</h3>
          {service_type_name === 'Spa' && <h5>`Duration: ${time_interval}`</h5>}
          <div className="card-actions">
             {currentUser.is_admin && (
@@ -98,7 +98,9 @@ function ServiceCard({
                </>
             )}
             <button onClick={handleDelete}>🚫</button>
-            {!currentUser.is_admin && <button onClick={handleFave}>♡</button>}
+            {!currentUser.is_admin && (
+               <button onClick={() => handleFave(id)}>♡</button>
+            )}
          </div>
       </div>
    );

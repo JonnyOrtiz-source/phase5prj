@@ -9,12 +9,14 @@ import NewServiceTypeForm from './serviceType/NewServiceTypeForm';
 import ServiceTypeList from './serviceType/ServiceTypeList';
 import ServicesList from './service/ServicesList';
 import NewServiceForm from './service/NewServiceForm';
+import FavoritesList from './favorite/FavoritesList';
 
 function Main() {
    const [currentUser, setCurrentUser] = useState(null);
    const [durations, setDurations] = useState([]);
    const [serviceTypes, setServiceTypes] = useState([]);
    const [services, setServices] = useState([]);
+   const [favorites, setFavorites] = useState([]);
 
    useEffect(() => {
       fetch('/authorized_user').then((res) => {
@@ -59,6 +61,18 @@ function Main() {
          }
       });
    }, []);
+
+   useEffect(() => {
+      if (currentUser && !currentUser.is_admin) {
+         fetch('/favorites').then((res) => {
+            if (res.ok) {
+               res.json().then((service) => setFavorites(service));
+            } else {
+               console.log('No services');
+            }
+         });
+      }
+   }, [currentUser]);
 
    const handleCurrentUser = (user) => {
       setCurrentUser(user);
@@ -149,6 +163,18 @@ function Main() {
                   handleServices={handleServices}
                   durations={durations}
                   serviceTypes={serviceTypes}
+               />
+            </Route>
+
+            <Route path="/favorites">
+               <FavoritesList
+                  currentUser={currentUser}
+                  favorites={favorites}
+                  // addService={addService}
+                  // updateService={updateService}
+                  // handleServices={handleServices}
+                  // durations={durations}
+                  // serviceTypes={serviceTypes}
                />
             </Route>
 

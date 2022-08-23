@@ -16,10 +16,10 @@ class ServiceTypesController < ApplicationController
         render json: service_type, status: :created
     end
 
-    def show
-        service_type = ServiceType.find(params[:id])
-        render json: service_type, status: :ok
-    end
+    # def show
+    #     service_type = ServiceType.find(params[:id])
+    #     render json: service_type, status: :ok
+    # end
 
     def destroy
         service_type = ServiceType.find(params[:id])

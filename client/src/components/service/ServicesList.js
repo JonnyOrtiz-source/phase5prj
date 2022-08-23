@@ -68,12 +68,13 @@ function ServicesList({
    return (
       <div>
          <h2>All Services</h2>
-         <div className="add-btn-container">
-            <button className="add-button" onClick={openModal}>
-               Add Service
-            </button>
-         </div>
-
+         {currentUser.is_admin && (
+            <div className="add-btn-container">
+               <button className="add-button" onClick={openModal}>
+                  Add Service
+               </button>
+            </div>
+         )}
          <div className="wrapper"> {serviceEl}</div>
 
          <Modal

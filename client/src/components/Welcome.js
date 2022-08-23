@@ -9,7 +9,7 @@ function Welcome({ currentUser }) {
       <div id="welcome">
          <h2>Welcome to Serenity Springs, {first_name}!</h2>
          <div className="benes-list">
-            <h3>Your place for:</h3>
+            <h3>Here for you with:</h3>
             <ul>
                <li className="bene">
                   <h3>
