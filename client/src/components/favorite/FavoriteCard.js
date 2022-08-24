@@ -1,13 +1,24 @@
-function FavoriteCard({ currentUser, favorite, handleFave }) {
+function FavoriteCard({ currentUser, favorite, handleFave, deleteFave }) {
    const {
       id,
+      //   service_id,
       name,
       description,
       price,
       image_url,
+      //   service_type_id,
       service_type_name,
+      //   duration_id,
       time_interval,
    } = favorite;
+
+   const handleDelete = () => {
+      fetch(`/favorites/${id}`, {
+         method: 'DELETE',
+      });
+      deleteFave(favorite);
+   };
+
    return (
       <div className="card center" key={id}>
          <img src={image_url} alt={name} />
@@ -18,7 +29,7 @@ function FavoriteCard({ currentUser, favorite, handleFave }) {
          {service_type_name === 'Spa' && <h5>`Duration: ${time_interval}`</h5>}
          <div className="card-actions">
             {!currentUser.is_admin && (
-               <button onClick={() => handleFave(id)}>♡</button>
+               <button onClick={handleDelete}>❤️</button>
             )}
          </div>
       </div>

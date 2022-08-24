@@ -108,6 +108,10 @@ function Main() {
       setFavorites((favorites) => [...favorites, newFavorite]);
    }
 
+   const handleFavorites = (favorite) => {
+      setFavorites(favorite);
+   };
+
    function updateService(updatedService) {
       const updatedServices = services.map((ogProject) =>
          ogProject.id === updatedService.id ? updatedService : ogProject
@@ -117,8 +121,6 @@ function Main() {
    }
 
    const handleFave = (id) => {
-      console.log('fave clicked', id);
-
       const configObj = {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
@@ -207,6 +209,7 @@ function Main() {
                   currentUser={currentUser}
                   favorites={favorites}
                   handleFave={handleFave}
+                  handleFavorites={handleFavorites}
                />
             </Route>
 

@@ -49,8 +49,6 @@ function Nav({ handleCurrentUser, currentUser }) {
                );
             }
          });
-      } else {
-         console.log('wishlist already exists');
       }
    };
 
