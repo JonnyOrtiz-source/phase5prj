@@ -9,6 +9,7 @@ function ServiceCard({
    updateService,
    serviceTypes,
    durations,
+   handleFave,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -56,10 +57,6 @@ function ServiceCard({
       });
 
       deleteService(service);
-   };
-
-   const handleFave = (id) => {
-      console.log('fave clicked', id);
    };
 
    return (

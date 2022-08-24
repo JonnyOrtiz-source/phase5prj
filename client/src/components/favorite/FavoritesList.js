@@ -1,20 +1,7 @@
-import { useState, useEffect } from 'react';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import FavoriteCard from './FavoriteCard';
 
-function FavoritesList() {
-   const [favorites, setFavorites] = useState([]);
-
-   useEffect(() => {
-      fetch('/favorites').then((res) => {
-         if (res.ok) {
-            res.json().then((favorite) => setFavorites(favorite));
-         } else {
-            console.log('No favorites');
-         }
-      });
-   }, []);
-
+function FavoritesList({ currentUser, favorites, handleFave }) {
    useDocumentTitle('Serenity Springs - Favorites List');
    let favoritesEl;
 
@@ -24,17 +11,19 @@ function FavoritesList() {
       favoritesEl = favorites.map((favorite) => (
          <FavoriteCard
             key={favorite.id}
-            // currentUser={currentUser}
+            currentUser={currentUser}
             favorite={favorite}
-            // updateService={updateService}
-            // deleteService={deleteService}
-            // serviceTypes={serviceTypes}
-            // durations={durations}
+            handleFave={handleFave}
          />
       ));
    }
 
-   return <div>{favoritesEl}</div>;
+   return (
+      <div>
+         <h2>Faves</h2>
+         <div className="wrapper">{favoritesEl}</div>
+      </div>
+   );
 }
 
 export default FavoritesList;

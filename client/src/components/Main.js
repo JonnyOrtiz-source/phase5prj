@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import Nav from './Nav';
 import Login from './Login';
 import Welcome from './Welcome';
@@ -74,6 +74,8 @@ function Main() {
       }
    }, [currentUser]);
 
+   const history = useHistory();
+
    const handleCurrentUser = (user) => {
       setCurrentUser(user);
    };
@@ -102,6 +104,10 @@ function Main() {
       setServices((services) => [...services, newService]);
    }
 
+   function addFavorite(newFavorite) {
+      setFavorites((favorites) => [...favorites, newFavorite]);
+   }
+
    function updateService(updatedService) {
       const updatedServices = services.map((ogProject) =>
          ogProject.id === updatedService.id ? updatedService : ogProject
@@ -109,6 +115,35 @@ function Main() {
 
       setServices(updatedServices);
    }
+
+   const handleFave = (id) => {
+      console.log('fave clicked', id);
+
+      const configObj = {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({
+            wishlist_id: currentUser.wishlist.id,
+            service_id: id,
+         }),
+      };
+
+      fetch(`/favorites`, configObj).then((res) => {
+         if (res.ok) {
+            res.json().then((newFavorite) => {
+               addFavorite(newFavorite);
+               history.push('/services');
+            });
+         } else {
+            res.json().then(
+               (data) => console.log(data.errors)
+               //   setError(data.errors.service_type_name[0])
+               // data.errors.duration[0]
+               // data.errors.service_type[0]
+            );
+         }
+      });
+   };
 
    if (!currentUser) return <Login handleCurrentUser={handleCurrentUser} />;
 
@@ -163,6 +198,7 @@ function Main() {
                   handleServices={handleServices}
                   durations={durations}
                   serviceTypes={serviceTypes}
+                  handleFave={handleFave}
                />
             </Route>
 
@@ -170,11 +206,7 @@ function Main() {
                <FavoritesList
                   currentUser={currentUser}
                   favorites={favorites}
-                  // addService={addService}
-                  // updateService={updateService}
-                  // handleServices={handleServices}
-                  // durations={durations}
-                  // serviceTypes={serviceTypes}
+                  handleFave={handleFave}
                />
             </Route>
 

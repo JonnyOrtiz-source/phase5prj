@@ -13,6 +13,7 @@ function ServicesList({
    handleServices,
    durations,
    serviceTypes,
+   handleFave,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -62,12 +63,14 @@ function ServicesList({
          deleteService={deleteService}
          serviceTypes={serviceTypes}
          durations={durations}
+         handleFave={handleFave}
       />
    ));
 
    return (
       <div>
-         <h2>All Services</h2>
+         <h2>Services</h2>
+
          {currentUser.is_admin && (
             <div className="add-btn-container">
                <button className="add-button" onClick={openModal}>
