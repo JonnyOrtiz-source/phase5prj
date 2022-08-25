@@ -80,6 +80,7 @@ function NewServiceForm({ addService, durations, serviceTypes }) {
             } else {
                res.json().then(
                   (data) => console.log(data.errors)
+                  // TODO: HANDLE ERROR
                   //   setError(data.errors.service_type_name[0])
                   // data.errors.duration[0]
                   // data.errors.service_type[0]

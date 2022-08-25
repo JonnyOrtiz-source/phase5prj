@@ -8,6 +8,7 @@ import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 function ServicesList({
    services,
    currentUser,
+   favorites,
    addService,
    updateService,
    handleServices,
@@ -59,6 +60,7 @@ function ServicesList({
          key={service.id}
          currentUser={currentUser}
          service={service}
+         favorites={favorites}
          updateService={updateService}
          deleteService={deleteService}
          serviceTypes={serviceTypes}

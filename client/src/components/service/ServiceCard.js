@@ -5,6 +5,7 @@ import EditServiceForm from './EditServiceForm';
 function ServiceCard({
    currentUser,
    service,
+   favorites,
    deleteService,
    updateService,
    serviceTypes,
@@ -59,6 +60,10 @@ function ServiceCard({
       deleteService(service);
    };
 
+   const found = favorites.find(({ service_id }) => service_id === id);
+
+   console.log(found);
+
    return (
       <div className="card center" key={id}>
          <img src={image_url} alt={name} />
@@ -92,11 +97,18 @@ function ServiceCard({
                      />
                      <button onClick={closeModal}>close</button>
                   </Modal>
+                  <button onClick={handleDelete}>🚫</button>
                </>
             )}
-            <button onClick={handleDelete}>🚫</button>
-            {!currentUser.is_admin && (
-               <button onClick={() => handleFave(id)}>♡</button>
+            {!currentUser.is_admin && !found && (
+               <button
+                  onClick={() => {
+                     // if hearted, make heart go away
+                     handleFave(id);
+                  }}
+               >
+                  👍🏼 LIKE ME!
+               </button>
             )}
          </div>
       </div>

@@ -29,7 +29,7 @@ function FavoriteCard({ currentUser, favorite, handleFave, deleteFave }) {
          {service_type_name === 'Spa' && <h5>`Duration: ${time_interval}`</h5>}
          <div className="card-actions">
             {!currentUser.is_admin && (
-               <button onClick={handleDelete}>❤️</button>
+               <button onClick={handleDelete}>👎🏼 unlike</button>
             )}
          </div>
       </div>
