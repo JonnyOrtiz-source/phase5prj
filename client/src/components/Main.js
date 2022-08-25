@@ -10,6 +10,7 @@ import ServiceTypeList from './serviceType/ServiceTypeList';
 import ServicesList from './service/ServicesList';
 import NewServiceForm from './service/NewServiceForm';
 import FavoritesList from './favorite/FavoritesList';
+import Booking from './booking/Booking';
 
 function Main() {
    const [currentUser, setCurrentUser] = useState(null);
@@ -213,6 +214,10 @@ function Main() {
                   handleFave={handleFave}
                   handleFavorites={handleFavorites}
                />
+            </Route>
+
+            <Route path="/bookings">
+               <Booking />
             </Route>
 
             <Route path="/login">

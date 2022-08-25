@@ -77,15 +77,22 @@ function Nav({ handleCurrentUser, currentUser }) {
             )}
 
             {!currentUser.is_admin && (
-               <li className="nav-item">
-                  <Link
-                     className="nav-link"
-                     to="/favorites"
-                     onClick={handleFaveLink}
-                  >
-                     Faves
-                  </Link>
-               </li>
+               <>
+                  <li className="nav-item">
+                     <Link
+                        className="nav-link"
+                        to="/favorites"
+                        onClick={handleFaveLink}
+                     >
+                        Faves
+                     </Link>
+                  </li>
+                  <li className="nav-item">
+                     <Link className="nav-link" to="/bookings">
+                        Book Now!
+                     </Link>
+                  </li>
+               </>
             )}
 
             <li className="nav-item">
