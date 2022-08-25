@@ -41,7 +41,6 @@ function NewServiceForm({ addService, durations, serviceTypes }) {
    });
 
    const handleServiceTypeChange = (e) => {
-      console.log(e.target.value);
       setServiceType(e.target.value);
    };
 

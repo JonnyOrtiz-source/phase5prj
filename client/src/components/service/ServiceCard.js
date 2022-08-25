@@ -62,8 +62,6 @@ function ServiceCard({
 
    const found = favorites.find(({ service_id }) => service_id === id);
 
-   console.log(found);
-
    return (
       <div className="card center" key={id}>
          <img src={image_url} alt={name} />
@@ -101,14 +99,7 @@ function ServiceCard({
                </>
             )}
             {!currentUser.is_admin && !found && (
-               <button
-                  onClick={() => {
-                     // if hearted, make heart go away
-                     handleFave(id);
-                  }}
-               >
-                  👍🏼 LIKE ME!
-               </button>
+               <button onClick={() => handleFave(id)}>❤️ FAVE ME!</button>
             )}
          </div>
       </div>

@@ -13,10 +13,10 @@ class UsersController < ApplicationController
     end
 
     # show
-    # def show
-    #     current_user = User.find_by(id: session[:current_user])
-    #     render json: current_user
-    # end
+    def show
+        current_user = User.find_by(id: session[:current_user])
+        render json: current_user
+    end
 
     private
 
