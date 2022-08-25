@@ -152,7 +152,7 @@ function Main() {
 
    if (!currentUser) return <Login handleCurrentUser={handleCurrentUser} />;
 
-   if (currentUser.is_admin) {
+   if (!currentUser.is_admin) {
       if (!services.length || !durations.length || !serviceTypes.length) {
          return <h2>Loading..</h2>;
       }
