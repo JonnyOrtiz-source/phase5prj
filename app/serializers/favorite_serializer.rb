@@ -1,5 +1,5 @@
 class FavoriteSerializer < ActiveModel::Serializer
-  attributes :id, :service_id, :name, :description, :price, :image_url, :service_type_id, :service_type_name, :duration_id, :time_interval
+  attributes :id, :service_id, :wishlist_id, :name, :description, :price, :image_url, :service_type_id, :service_type_name, :duration_id, :time_interval
   # has_one :wishlist
   # has_one :service
 

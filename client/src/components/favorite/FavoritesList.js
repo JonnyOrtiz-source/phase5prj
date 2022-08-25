@@ -4,7 +4,7 @@ import FavoriteCard from './FavoriteCard';
 function FavoritesList({
    currentUser,
    favorites,
-   handleFave,
+   // handleFave,
    handleFavorites,
 }) {
    useDocumentTitle('Serenity Springs - Favorites List');
@@ -18,14 +18,15 @@ function FavoritesList({
    };
 
    if (!favorites.length) {
-      favoritesEl = 'No faves..yet';
+      favoritesEl = 'No faves yet';
+      console.log(favoritesEl.length);
    } else {
       favoritesEl = favorites.map((favorite) => (
          <FavoriteCard
             key={favorite.id}
             currentUser={currentUser}
             favorite={favorite}
-            handleFave={handleFave}
+            // handleFave={handleFave}
             deleteFave={deleteFave}
          />
       ));

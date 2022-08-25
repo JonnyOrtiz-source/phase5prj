@@ -1,4 +1,9 @@
-function FavoriteCard({ currentUser, favorite, handleFave, deleteFave }) {
+function FavoriteCard({
+   currentUser,
+   favorite,
+   // handleFave,
+   deleteFave,
+}) {
    const {
       id,
       //   service_id,

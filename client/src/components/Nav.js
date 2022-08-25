@@ -1,21 +1,6 @@
-import { Link, useHistory } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Nav({ handleCurrentUser, currentUser }) {
-   const [wishlist, setWishlist] = useState([]);
-
-   useEffect(() => {
-      fetch('/wishlists').then((res) => {
-         if (res.ok) {
-            res.json().then((wishlist) => setWishlist(wishlist));
-         } else {
-            console.log('Wishlist not available');
-         }
-      });
-   }, []);
-
-   const history = useHistory();
-
    const logout = () => {
       fetch('/logout', {
          method: 'DELETE',
@@ -24,9 +9,10 @@ function Nav({ handleCurrentUser, currentUser }) {
       });
    };
 
-   const handleFaveLink = () => {
+   const handleWishlist = () => {
+      console.log('services clicked');
       // if no wish list for the user already, create it
-      if (!currentUser.is_admin && wishlist.length === 0) {
+      if (!currentUser.is_admin && !currentUser.wishlist) {
          const configObj = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -37,18 +23,20 @@ function Nav({ handleCurrentUser, currentUser }) {
          fetch('/wishlists', configObj).then((res) => {
             if (res.ok) {
                res.json().then((newWishlist) => {
-                  setWishlist(newWishlist);
-                  history.push('/favorites');
+                  console.log(newWishlist);
                });
             } else {
                res.json().then(
                   (data) => console.log(data.errors)
+                  // TODO: HANDLE ERROR
                   //   setError(data.errors.service_type_name[0])
                   // data.errors.duration[0]
                   // data.errors.service_type[0]
                );
             }
          });
+      } else {
+         console.log('wishlist already exists');
       }
    };
 
@@ -56,7 +44,11 @@ function Nav({ handleCurrentUser, currentUser }) {
       <div>
          <ul className="nav-container">
             <li className="nav-item">
-               <Link className="nav-link" to="/services">
+               <Link
+                  className="nav-link"
+                  to="/services"
+                  onClick={handleWishlist}
+               >
                   Services
                </Link>
             </li>
@@ -79,11 +71,7 @@ function Nav({ handleCurrentUser, currentUser }) {
             {!currentUser.is_admin && (
                <>
                   <li className="nav-item">
-                     <Link
-                        className="nav-link"
-                        to="/favorites"
-                        onClick={handleFaveLink}
-                     >
+                     <Link className="nav-link" to="/favorites">
                         Faves
                      </Link>
                   </li>
@@ -97,7 +85,7 @@ function Nav({ handleCurrentUser, currentUser }) {
 
             <li className="nav-item">
                <Link className="nav-link" to="/cart">
-                  🛒 Cart
+                  Cart
                </Link>
             </li>
             <li className="nav-item">

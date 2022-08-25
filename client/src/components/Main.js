@@ -122,6 +122,7 @@ function Main() {
    }
 
    const handleFave = (id) => {
+      console.log(id, currentUser.wishlist.id);
       const configObj = {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
@@ -135,7 +136,7 @@ function Main() {
          if (res.ok) {
             res.json().then((newFavorite) => {
                addFavorite(newFavorite);
-               history.push('/services');
+               history.push('/favorites');
             });
          } else {
             res.json().then(
@@ -159,6 +160,7 @@ function Main() {
 
    return (
       <div className="main">
+         {JSON.stringify(currentUser.first_name)}
          <Nav handleCurrentUser={handleCurrentUser} currentUser={currentUser} />
          <Switch>
             <Route path="/durations/new">
@@ -211,7 +213,7 @@ function Main() {
                <FavoritesList
                   currentUser={currentUser}
                   favorites={favorites}
-                  handleFave={handleFave}
+                  // handleFave={handleFave}
                   handleFavorites={handleFavorites}
                />
             </Route>
