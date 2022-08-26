@@ -5,7 +5,6 @@ import EditServiceForm from './EditServiceForm';
 function ServiceCard({
    currentUser,
    service,
-   favorites,
    deleteService,
    updateService,
    serviceTypes,
@@ -60,10 +59,13 @@ function ServiceCard({
       deleteService(service);
    };
 
-   const found = favorites.find(({ service_id }) => service_id === id);
+   const found = currentUser.favorites.find(
+      ({ service_id }) => service_id === id
+   );
 
    return (
       <div className="card center" key={id}>
+         {JSON.stringify(id)}
          <img src={image_url} alt={name} />
          <h2>{name}</h2>
          <h3>{description}</h3>

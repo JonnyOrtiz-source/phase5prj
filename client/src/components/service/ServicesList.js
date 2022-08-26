@@ -1,5 +1,4 @@
 import ServiceCard from './ServiceCard';
-// import EditServiceForm from './service/EditServiceForm';
 import { useState } from 'react';
 import NewServiceForm from './NewServiceForm';
 import Modal from 'react-modal';
@@ -60,7 +59,6 @@ function ServicesList({
          key={service.id}
          currentUser={currentUser}
          service={service}
-         favorites={favorites}
          updateService={updateService}
          deleteService={deleteService}
          serviceTypes={serviceTypes}

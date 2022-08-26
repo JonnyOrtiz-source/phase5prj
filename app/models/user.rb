@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
     has_one :account
     has_one :wishlist
+    has_many :favorites, through: :wishlist
 
     validates :first_name, presence: true
     validates :last_name, presence: true

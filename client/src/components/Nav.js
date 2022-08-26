@@ -10,8 +10,6 @@ function Nav({ handleCurrentUser, currentUser }) {
    };
 
    const handleWishlist = () => {
-      console.log('services clicked');
-      // if no wish list for the user already, create it
       if (!currentUser.is_admin && !currentUser.wishlist) {
          const configObj = {
             method: 'POST',
@@ -23,7 +21,10 @@ function Nav({ handleCurrentUser, currentUser }) {
          fetch('/wishlists', configObj).then((res) => {
             if (res.ok) {
                res.json().then((newWishlist) => {
-                  console.log(newWishlist);
+                  fetch(`/users/${currentUser.id}`).then((res) => {
+                     if (res.ok)
+                        res.json().then((user) => handleCurrentUser(user));
+                  });
                });
             } else {
                res.json().then(
@@ -35,8 +36,6 @@ function Nav({ handleCurrentUser, currentUser }) {
                );
             }
          });
-      } else {
-         console.log('wishlist already exists');
       }
    };
 

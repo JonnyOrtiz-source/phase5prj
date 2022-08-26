@@ -17,7 +17,6 @@ function Main() {
    const [durations, setDurations] = useState([]);
    const [serviceTypes, setServiceTypes] = useState([]);
    const [services, setServices] = useState([]);
-   const [favorites, setFavorites] = useState([]);
 
    useEffect(() => {
       fetch('/authorized_user').then((res) => {
@@ -63,18 +62,6 @@ function Main() {
       });
    }, []);
 
-   useEffect(() => {
-      if (currentUser && !currentUser.is_admin) {
-         fetch('/favorites').then((res) => {
-            if (res.ok) {
-               res.json().then((service) => setFavorites(service));
-            } else {
-               console.log('No services');
-            }
-         });
-      }
-   }, [currentUser]);
-
    const history = useHistory();
 
    const handleCurrentUser = (user) => {
@@ -105,24 +92,14 @@ function Main() {
       setServices((services) => [...services, newService]);
    }
 
-   function addFavorite(newFavorite) {
-      setFavorites((favorites) => [...favorites, newFavorite]);
-   }
-
-   const handleFavorites = (favorite) => {
-      setFavorites(favorite);
-   };
-
    function updateService(updatedService) {
-      const updatedServices = services.map((ogProject) =>
-         ogProject.id === updatedService.id ? updatedService : ogProject
+      const updatedServices = services.map((ogService) =>
+         ogService.id === updatedService.id ? updatedService : ogService
       );
-
       setServices(updatedServices);
    }
 
    const handleFave = (id) => {
-      console.log(id, currentUser.wishlist.id);
       const configObj = {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
@@ -135,7 +112,10 @@ function Main() {
       fetch(`/favorites`, configObj).then((res) => {
          if (res.ok) {
             res.json().then((newFavorite) => {
-               addFavorite(newFavorite);
+               fetch(`/users/${currentUser.id}`).then((res) => {
+                  if (res.ok)
+                     res.json().then((user) => handleCurrentUser(user));
+               });
                history.push('/favorites');
             });
          } else {
@@ -152,7 +132,8 @@ function Main() {
 
    if (!currentUser) return <Login handleCurrentUser={handleCurrentUser} />;
 
-   if (!currentUser.is_admin) {
+   // TODO: WHEN PUSHING TO HEROKU, CHANGE TO NOT ADMIN TO ALLOW ADMIN TO ADD SERVICE TYPES, DURATIONS, & SERVICES
+   if (currentUser.is_admin) {
       if (!services.length || !durations.length || !serviceTypes.length) {
          return <h2>Loading..</h2>;
       }
@@ -199,7 +180,6 @@ function Main() {
                <ServicesList
                   currentUser={currentUser}
                   services={services}
-                  favorites={favorites}
                   addService={addService}
                   updateService={updateService}
                   handleServices={handleServices}
@@ -212,9 +192,7 @@ function Main() {
             <Route path="/favorites">
                <FavoritesList
                   currentUser={currentUser}
-                  favorites={favorites}
-                  // handleFave={handleFave}
-                  handleFavorites={handleFavorites}
+                  handleCurrentUser={handleCurrentUser}
                />
             </Route>
 

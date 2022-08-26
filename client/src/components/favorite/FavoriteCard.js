@@ -1,12 +1,8 @@
-function FavoriteCard({
-   currentUser,
-   favorite,
-   // handleFave,
-   deleteFave,
-}) {
+function FavoriteCard({ currentUser, favorite, handleCurrentUser }) {
    const {
       id,
       //   service_id,
+      //   wishlist_id,
       name,
       description,
       price,
@@ -20,8 +16,17 @@ function FavoriteCard({
    const handleDelete = () => {
       fetch(`/favorites/${id}`, {
          method: 'DELETE',
+      }).then((res) => {
+         if (res.ok)
+            res.json().then((deletedFave) => {
+               fetch(`/users/${currentUser.id}`).then((res) => {
+                  if (res.ok)
+                     res.json().then((updatedUser) =>
+                        handleCurrentUser(updatedUser)
+                     );
+               });
+            });
       });
-      deleteFave(favorite);
    };
 
    return (

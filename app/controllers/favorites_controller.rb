@@ -14,10 +14,17 @@ class FavoritesController < ApplicationController
 
     end
 
+    def update
+        favorite = Favorite.find(params[:id])
+        favorite.update!(favorite_params)
+        render json: favorite, status: :created
+
+    end
+
     def destroy
         favorite = Favorite.find(params[:id])
         favorite.destroy
-        head :no_content
+        render json: favorite, status: :ok
     end
 
 
