@@ -1,5 +1,3 @@
-import React from 'react';
-
 function CartCard({ item, setCart, deleteCartItem }) {
    const {
       id,
@@ -15,7 +13,6 @@ function CartCard({ item, setCart, deleteCartItem }) {
 
    return (
       <div className="card center" key={id}>
-         {JSON.stringify(id)}
          <img src={image_url} alt={name} />
          <h2>{name}</h2>
          <h3>{description}</h3>

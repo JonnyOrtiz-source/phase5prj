@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Nav from './Nav';
 import Login from './Login';
 import Welcome from './Welcome';
@@ -64,8 +64,6 @@ function Main() {
       });
    }, []);
 
-   const history = useHistory();
-
    const handleCurrentUser = (user) => {
       setCurrentUser(user);
    };
@@ -126,7 +124,6 @@ function Main() {
                   if (res.ok)
                      res.json().then((user) => handleCurrentUser(user));
                });
-               history.push('/favorites');
             });
          } else {
             res.json().then(
@@ -151,7 +148,6 @@ function Main() {
 
    return (
       <div className="main">
-         {JSON.stringify(currentUser.first_name)}
          <Nav handleCurrentUser={handleCurrentUser} currentUser={currentUser} />
          <Switch>
             <Route path="/durations/new">
@@ -195,9 +191,10 @@ function Main() {
                   handleServices={handleServices}
                   durations={durations}
                   serviceTypes={serviceTypes}
+                  cart={cart}
                   addCartItem={addCartItem}
                   handleFave={handleFave}
-                  setCart={handleCart}
+                  handleCart={handleCart}
                />
             </Route>
 

@@ -9,9 +9,11 @@ function ServiceCard({
    updateService,
    serviceTypes,
    durations,
+   cart,
    addCartItem,
    handleFave,
-   setCart,
+   handleCart,
+   handleNotification,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -61,13 +63,14 @@ function ServiceCard({
       deleteService(service);
    };
 
-   const found = currentUser.favorites.find(
+   const foundFave = currentUser.favorites.find(
       ({ service_id }) => service_id === id
    );
 
+   const foundCartItem = cart.find(({ id }) => service.id === id);
+
    return (
       <div className="card center" key={id}>
-         {JSON.stringify(id)}
          <img src={image_url} alt={name} />
          <h2>{name}</h2>
          <h3>{description}</h3>
@@ -102,11 +105,23 @@ function ServiceCard({
                   <button onClick={handleDelete}>🚫</button>
                </>
             )}
-            {!currentUser.is_admin && !found && (
-               <button onClick={() => handleFave(id)}>❤️ FAVE ME!</button>
+            {!currentUser.is_admin && !foundFave && (
+               <button
+                  onClick={() => {
+                     handleFave(id);
+                     handleNotification(`${name} added to Faves!`);
+                  }}
+               >
+                  ❤️ fave me
+               </button>
             )}
-            {!currentUser.is_admin && (
-               <button onClick={() => addCartItem(service)}>
+            {!currentUser.is_admin && !foundCartItem && (
+               <button
+                  onClick={() => {
+                     addCartItem(service);
+                     handleNotification(`${name} added to Cart!`);
+                  }}
+               >
                   🛒 add to cart
                </button>
             )}

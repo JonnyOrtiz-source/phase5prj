@@ -2,7 +2,6 @@ import CartCard from './CartCard';
 
 function CartList({ cart, setCart }) {
    const deleteCartItem = (deletedCartItem) => {
-      console.log('cart:', cart, 'deleted cart item:', deletedCartItem);
       const updatedCart = cart.filter((item) => item.id !== deletedCartItem.id);
       setCart(updatedCart);
    };
