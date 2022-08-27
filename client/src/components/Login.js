@@ -22,6 +22,7 @@ function Login({ handleCurrentUser }) {
 
    const handleSubmit = (e) => {
       e.preventDefault();
+      // login user
       fetch('/login', {
          method: 'POST',
          headers: {

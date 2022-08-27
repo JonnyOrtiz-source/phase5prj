@@ -1,9 +1,9 @@
 class User < ApplicationRecord
     has_secure_password
 
-    has_one :account
-    has_one :wishlist
-    has_many :favorites, through: :wishlist
+    has_one :account, dependent: :destroy
+    has_one :wishlist, dependent: :destroy
+    has_many :favorites, through: :wishlist, dependent: :destroy
 
     validates :first_name, presence: true
     validates :last_name, presence: true

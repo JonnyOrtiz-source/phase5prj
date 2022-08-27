@@ -29,7 +29,35 @@ function Register({ handleCurrentUser }) {
       fetch(`/users`, configObj).then((res) => {
          if (res.ok) {
             res.json().then((user) => {
-               handleCurrentUser(user);
+               // create an account
+               const configObjAccount = {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                     user_id: user.id,
+                  }),
+               };
+               fetch('/accounts', configObjAccount).then((res) => {
+                  if (res.ok) {
+                     res.json().then((newAccount) => {
+                        handleCurrentUser(user);
+                        console.log(
+                           'new user & account created',
+                           user,
+                           newAccount
+                        );
+                     });
+                  } else {
+                     res.json().then(
+                        (data) => console.log(data.errors)
+                        // TODO: HANDLE ERROR
+                        //   setError(data.errors.service_type_name[0])
+                        // data.errors.duration[0]
+                        // data.errors.service_type[0]
+                     );
+                  }
+               });
+
                history.push('/');
             });
          } else {
