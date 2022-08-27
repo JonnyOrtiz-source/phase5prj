@@ -115,14 +115,14 @@ function Nav({ handleCurrentUser, currentUser }) {
                         Book Now!
                      </Link>
                   </li>
+                  <li className="nav-item">
+                     <Link className="nav-link" to="/cart">
+                        Cart
+                     </Link>
+                  </li>
                </>
             )}
 
-            <li className="nav-item">
-               <Link className="nav-link" to="/cart">
-                  Cart
-               </Link>
-            </li>
             <li className="nav-item">
                <Link className="nav-link" to="/login" onClick={logout}>
                   Logout

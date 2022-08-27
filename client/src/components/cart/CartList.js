@@ -1,10 +1,17 @@
 import CartCard from './CartCard';
 
-function CartList({ cart, handleCart }) {
-   const cartEl = cart.map((cart) => (
+function CartList({ cart, setCart }) {
+   const deleteCartItem = (deletedCartItem) => {
+      console.log('cart:', cart, 'deleted cart item:', deletedCartItem);
+      const updatedCart = cart.filter((item) => item.id !== deletedCartItem.id);
+      setCart(updatedCart);
+   };
+
+   const cartEl = cart.map((item) => (
       //show cart item
       <CartCard
-         key={cart.id}
+         key={item.id}
+         item={item}
          // currentUser={currentUser}
          // service={service}
          // updateService={updateService}
@@ -12,13 +19,15 @@ function CartList({ cart, handleCart }) {
          // serviceTypes={serviceTypes}
          // durations={durations}
          // handleFave={handleFave}
-         handleCart={handleCart}
+         setCart={setCart}
+         deleteCartItem={deleteCartItem}
       />
    ));
+
    return (
       <div>
-         Cart
-         {cartEl}
+         <h2>Cart</h2>
+         <div className="wrapper">{cartEl}</div>
       </div>
    );
 }

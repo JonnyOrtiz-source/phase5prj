@@ -9,8 +9,9 @@ function ServiceCard({
    updateService,
    serviceTypes,
    durations,
+   addCartItem,
    handleFave,
-   handleCart,
+   setCart,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -105,7 +106,9 @@ function ServiceCard({
                <button onClick={() => handleFave(id)}>❤️ FAVE ME!</button>
             )}
             {!currentUser.is_admin && (
-               <button onClick={() => handleCart(id)}>❤️ FAVE ME!</button>
+               <button onClick={() => addCartItem(service)}>
+                  🛒 add to cart
+               </button>
             )}
          </div>
       </div>

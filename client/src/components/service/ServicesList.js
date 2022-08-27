@@ -13,8 +13,9 @@ function ServicesList({
    handleServices,
    durations,
    serviceTypes,
+   addCartItem,
    handleFave,
-   handleCart,
+   setCart,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -64,8 +65,9 @@ function ServicesList({
          deleteService={deleteService}
          serviceTypes={serviceTypes}
          durations={durations}
+         addCartItem={addCartItem}
          handleFave={handleFave}
-         handleCart={handleCart}
+         setCart={setCart}
       />
    ));
 

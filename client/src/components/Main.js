@@ -82,9 +82,13 @@ function Main() {
       setServices(service);
    };
 
-   const handleCart = (cartItem) => {
-      setCart(cartItem);
+   const handleCart = (cart) => {
+      setCart(cart);
    };
+
+   function addCartItem(newServiceItem) {
+      setCart((cart) => [...cart, newServiceItem]);
+   }
 
    function addDuration(newDuration) {
       setDurations((durations) => [...durations, newDuration]);
@@ -191,8 +195,9 @@ function Main() {
                   handleServices={handleServices}
                   durations={durations}
                   serviceTypes={serviceTypes}
+                  addCartItem={addCartItem}
                   handleFave={handleFave}
-                  handleCart={handleCart}
+                  setCart={handleCart}
                />
             </Route>
 
@@ -208,7 +213,7 @@ function Main() {
             </Route>
 
             <Route path="/cart">
-               <CartList cart={cart} handleCart={handleCart} />
+               <CartList cart={cart} setCart={handleCart} />
             </Route>
 
             <Route path="/login">
