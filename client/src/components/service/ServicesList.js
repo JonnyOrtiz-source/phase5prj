@@ -14,6 +14,7 @@ function ServicesList({
    durations,
    serviceTypes,
    handleFave,
+   handleCart,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -64,6 +65,7 @@ function ServicesList({
          serviceTypes={serviceTypes}
          durations={durations}
          handleFave={handleFave}
+         handleCart={handleCart}
       />
    ));
 

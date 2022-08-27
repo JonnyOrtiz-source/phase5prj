@@ -11,12 +11,14 @@ import ServicesList from './service/ServicesList';
 import NewServiceForm from './service/NewServiceForm';
 import FavoritesList from './favorite/FavoritesList';
 import Booking from './booking/Booking';
+import CartList from './cart/CartList';
 
 function Main() {
    const [currentUser, setCurrentUser] = useState(null);
    const [durations, setDurations] = useState([]);
    const [serviceTypes, setServiceTypes] = useState([]);
    const [services, setServices] = useState([]);
+   const [cart, setCart] = useState([]);
 
    useEffect(() => {
       fetch('/authorized_user').then((res) => {
@@ -78,6 +80,10 @@ function Main() {
 
    const handleServices = (service) => {
       setServices(service);
+   };
+
+   const handleCart = (cartItem) => {
+      setCart(cartItem);
    };
 
    function addDuration(newDuration) {
@@ -186,6 +192,7 @@ function Main() {
                   durations={durations}
                   serviceTypes={serviceTypes}
                   handleFave={handleFave}
+                  handleCart={handleCart}
                />
             </Route>
 
@@ -198,6 +205,10 @@ function Main() {
 
             <Route path="/bookings">
                <Booking />
+            </Route>
+
+            <Route path="/cart">
+               <CartList cart={cart} handleCart={handleCart} />
             </Route>
 
             <Route path="/login">

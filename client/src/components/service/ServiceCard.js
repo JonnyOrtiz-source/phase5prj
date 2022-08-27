@@ -10,6 +10,7 @@ function ServiceCard({
    serviceTypes,
    durations,
    handleFave,
+   handleCart,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -102,6 +103,9 @@ function ServiceCard({
             )}
             {!currentUser.is_admin && !found && (
                <button onClick={() => handleFave(id)}>❤️ FAVE ME!</button>
+            )}
+            {!currentUser.is_admin && (
+               <button onClick={() => handleCart(id)}>❤️ FAVE ME!</button>
             )}
          </div>
       </div>
