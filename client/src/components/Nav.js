@@ -39,42 +39,6 @@ function Nav({ handleCurrentUser, currentUser }) {
       }
    };
 
-   // TODO: ADD TO CHECKOUT BUTTON
-   // const handleCart = () => {
-   //    // create a cart
-   //    if (!currentUser.is_admin && !currentUser.account.order) {
-   //       // create a cart
-   //       const configObj = {
-   //          method: 'POST',
-   //          headers: { 'Content-Type': 'application/json' },
-   //          body: JSON.stringify({
-   //             account_id: currentUser.account.id,
-   //             paid: false,
-   //          }),
-   //       };
-   //       fetch('/orders', configObj).then((res) => {
-   //          if (res.ok) {
-   //             res.json().then((newOrder) => {
-   //                fetch(`/accounts/${currentUser.account.id}`).then((res) => {
-   //                   if (res.ok) {
-   //                      console.log('created cart');
-   //                      res.json().then((user) => handleCurrentUser(user));
-   //                   }
-   //                });
-   //             });
-   //          } else {
-   //             res.json().then(
-   //                (data) => console.log(data.errors)
-   //                // TODO: HANDLE ERROR
-   //                //   setError(data.errors.service_type_name[0])
-   //                // data.errors.duration[0]
-   //                // data.errors.service_type[0]
-   //             );
-   //          }
-   //       });
-   //    }
-   // };
-
    return (
       <div>
          <ul className="nav-container">
