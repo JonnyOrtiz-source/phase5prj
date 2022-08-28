@@ -20,15 +20,17 @@ function Register({ handleCurrentUser }) {
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      const configObj = {
+      const configObjNewUser = {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify({ ...formData }),
       };
 
-      fetch(`/users`, configObj).then((res) => {
+      fetch(`/users`, configObjNewUser).then((res) => {
          if (res.ok) {
             res.json().then((user) => {
+               console.log('new user created', user);
+
                // create an account
                const configObjAccount = {
                   method: 'POST',
@@ -40,12 +42,7 @@ function Register({ handleCurrentUser }) {
                fetch('/accounts', configObjAccount).then((res) => {
                   if (res.ok) {
                      res.json().then((newAccount) => {
-                        handleCurrentUser(user);
-                        console.log(
-                           'new user & account created',
-                           user,
-                           newAccount
-                        );
+                        console.log('new account created', newAccount);
                      });
                   } else {
                      res.json().then(
@@ -57,8 +54,35 @@ function Register({ handleCurrentUser }) {
                      );
                   }
                });
-
-               history.push('/');
+               // create a wishlist
+               const configObjWishlist = {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                     user_id: user.id,
+                  }),
+               };
+               fetch('/wishlists', configObjWishlist).then((res) => {
+                  if (res.ok) {
+                     res.json().then((newWishlist) => {
+                        console.log('new wishlist created', newWishlist);
+                     });
+                  } else {
+                     res.json().then(
+                        (data) => console.log(data.errors)
+                        // TODO: HANDLE ERROR
+                        //   setError(data.errors.service_type_name[0])
+                        // data.errors.duration[0]
+                        // data.errors.service_type[0]
+                     );
+                  }
+               });
+               handleCurrentUser(user);
+               history.push('/logout');
+               history.push('/login');
+               alert(
+                  `Thank you for registering, ${user.first_name}! Please login.`
+               );
             });
          } else {
             res.json().then((data) => setError(data.errors));
