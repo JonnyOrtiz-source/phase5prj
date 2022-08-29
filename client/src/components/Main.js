@@ -140,7 +140,7 @@ function Main() {
    if (!currentUser) return <Login handleCurrentUser={handleCurrentUser} />;
 
    // TODO: WHEN PUSHING TO HEROKU, CHANGE TO NOT ADMIN TO ALLOW ADMIN TO ADD SERVICE TYPES, DURATIONS, & SERVICES
-   if (currentUser.is_admin) {
+   if (!currentUser.is_admin) {
       if (!services.length || !durations.length || !serviceTypes.length) {
          return <h2>Loading..</h2>;
       }
