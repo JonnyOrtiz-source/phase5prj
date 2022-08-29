@@ -18,7 +18,9 @@ function CartCard({ item, setCart, deleteCartItem }) {
          <h3>{description}</h3>
          <h3>Price: ${price}</h3>
          <h3>Service Type: {service_type_name}</h3>
-         {service_type_name === 'Spa' && <h5>`Duration: ${time_interval}`</h5>}
+         {service_type_name === 'Spa' && (
+            <h3>Duration: {time_interval} mins</h3>
+         )}
          <div className="card-actions">
             <button onClick={handleDelete}>❌ remove from cart</button>
          </div>
