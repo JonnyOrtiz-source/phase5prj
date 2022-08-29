@@ -13,7 +13,7 @@ function Welcome({ currentUser }) {
             <h3>‣ an individually customized salon and spa experience</h3>
             <h3>‣ natural, handmade products</h3>
          </div>
-         <h3 className="center">Now serving the Greater Tampa Bay area!</h3>
+         <h2 className="center">Now serving the Greater Tampa Bay area!</h2>
       </div>
    );
 }
