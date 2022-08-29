@@ -73,7 +73,7 @@ function ServiceCard({
          <img src={image_url} alt={name} />
          <h2>{name}</h2>
          <h3>{description}</h3>
-         <h3>Price: ${price}</h3>
+         <h3>Price: {price === 0 ? 'Free!' : `$ ${price}`}</h3>
          <h3>Service Type: {service_type_name}</h3>
          {service_type_name === 'Spa' && (
             <h3>Duration: {time_interval} mins</h3>

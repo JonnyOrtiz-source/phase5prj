@@ -49,7 +49,6 @@ function NewServiceForm({ addService, durations, serviceTypes }) {
    });
 
    const handleDurationChange = (e) => {
-      console.log(e.target.value);
       setDuration(e.target.value);
    };
 

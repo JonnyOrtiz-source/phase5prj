@@ -77,7 +77,7 @@ function EditServiceForm({ service, updateService, serviceTypes, durations }) {
          if (res.ok) {
             res.json().then((updatedService) => {
                updateService(updatedService);
-               setMessage(`updated to: ${updatedService.name}`);
+               setMessage(`${updatedService.name} updated!`);
                history.push('/services');
             });
          } else {
