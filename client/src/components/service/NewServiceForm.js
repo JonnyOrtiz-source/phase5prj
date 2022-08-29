@@ -20,8 +20,8 @@ const Dropdown = ({ label, value, options, handleChange, shoeTypes }) => {
 function NewServiceForm({ addService, durations, serviceTypes }) {
    const [message, setMessage] = useState('');
    const [error, setError] = useState('');
-   const [serviceType, setServiceType] = useState('5');
-   const [duration, setDuration] = useState('25');
+   const [serviceType, setServiceType] = useState('3');
+   const [duration, setDuration] = useState('6');
 
    const history = useHistory();
 
@@ -30,8 +30,8 @@ function NewServiceForm({ addService, durations, serviceTypes }) {
       description: '',
       price: '',
       image_url: '',
-      service_type_id: '',
-      duration_id: '25',
+      service_type_id: '3',
+      duration_id: '6',
    };
 
    const { formData, handleChange } = useForm(initialData);
