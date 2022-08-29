@@ -19,7 +19,6 @@ function ServicesList({
    handleCart,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
-   const [notification, setNotification] = useState('');
 
    const customStyles = {
       content: {
@@ -51,10 +50,6 @@ function ServicesList({
 
    useDocumentTitle('Serenity Springs - Services List');
 
-   const handleNotification = (message) => {
-      setNotification(message);
-   };
-
    const deleteService = (deletedService) => {
       const updatedServices = services.filter(
          (service) => service.id !== deletedService.id
@@ -75,15 +70,12 @@ function ServicesList({
          addCartItem={addCartItem}
          handleFave={handleFave}
          handleCart={handleCart}
-         handleNotification={handleNotification}
       />
    ));
 
    return (
       <div>
          <h2>Services</h2>
-         <div className="message">{notification}</div>
-
          {currentUser.is_admin && (
             <div className="add-btn-container">
                <button className="add-button" onClick={openModal}>

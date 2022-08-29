@@ -29,7 +29,7 @@ function Register({ handleCurrentUser }) {
       fetch(`/users`, configObjNewUser).then((res) => {
          if (res.ok) {
             res.json().then((user) => {
-               console.log('new user created', user);
+               console.log('new user created');
 
                // create an account
                const configObjAccount = {
@@ -42,7 +42,7 @@ function Register({ handleCurrentUser }) {
                fetch('/accounts', configObjAccount).then((res) => {
                   if (res.ok) {
                      res.json().then((newAccount) => {
-                        console.log('new account created', newAccount);
+                        console.log('new account created');
                      });
                   } else {
                      res.json().then(
@@ -65,7 +65,7 @@ function Register({ handleCurrentUser }) {
                fetch('/wishlists', configObjWishlist).then((res) => {
                   if (res.ok) {
                      res.json().then((newWishlist) => {
-                        console.log('new wishlist created', newWishlist);
+                        console.log('new wishlist created');
                      });
                   } else {
                      res.json().then(

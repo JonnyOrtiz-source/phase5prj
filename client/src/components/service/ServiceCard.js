@@ -13,7 +13,6 @@ function ServiceCard({
    addCartItem,
    handleFave,
    handleCart,
-   handleNotification,
 }) {
    const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -81,7 +80,7 @@ function ServiceCard({
             {currentUser.is_admin && (
                <>
                   <button className="add-button" onClick={openModal}>
-                     ✍🏼
+                     edit
                   </button>
 
                   <Modal
@@ -102,28 +101,30 @@ function ServiceCard({
                      />
                      <button onClick={closeModal}>close</button>
                   </Modal>
-                  <button onClick={handleDelete}>🚫</button>
+                  <button onClick={handleDelete}>delete</button>
                </>
             )}
-            {!currentUser.is_admin && !foundFave && (
+            {!currentUser.is_admin && !foundFave ? (
                <button
                   onClick={() => {
                      handleFave(id);
-                     handleNotification(`${name} added to Faves!`);
                   }}
                >
                   ❤️ fave me
                </button>
+            ) : (
+               <span className="notification">faved!</span>
             )}
-            {!currentUser.is_admin && !foundCartItem && (
+            {!currentUser.is_admin && !foundCartItem ? (
                <button
                   onClick={() => {
                      addCartItem(service);
-                     handleNotification(`${name} added to Cart!`);
                   }}
                >
                   🛒 add to cart
                </button>
+            ) : (
+               <span className="notification">added to cart!</span>
             )}
          </div>
       </div>

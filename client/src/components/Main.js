@@ -108,11 +108,6 @@ function Main() {
    }
 
    const handleFave = (id) => {
-      console.log('id from fave click in main', id);
-      console.log('current user from fave click in main', currentUser);
-      // if (!currentUser.wishlist) {
-      //    currentUser.wishlist = [];
-      // }
       const configObj = {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
