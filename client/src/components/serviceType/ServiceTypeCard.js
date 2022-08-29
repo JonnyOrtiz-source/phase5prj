@@ -13,7 +13,7 @@ function ServiceTypeCard({ serviceType, deleteServiceType }) {
       <div className="card center" key={id}>
          <h3>{service_type_name}</h3>
          <div className="card-actions">
-            <button onClick={handleDelete}>🚫</button>
+            <button onClick={handleDelete}>❌ delete</button>
          </div>
       </div>
    );

@@ -105,26 +105,20 @@ function ServiceCard({
                </>
             )}
             {!currentUser.is_admin && !foundFave ? (
-               <button
-                  onClick={() => {
-                     handleFave(id);
-                  }}
-               >
-                  ❤️ fave me
-               </button>
+               <button onClick={() => handleFave(id)}>❤️ fave me</button>
             ) : (
-               <span className="notification">faved!</span>
+               !currentUser.is_admin && (
+                  <span className="notification">faved!</span>
+               )
             )}
             {!currentUser.is_admin && !foundCartItem ? (
-               <button
-                  onClick={() => {
-                     addCartItem(service);
-                  }}
-               >
+               <button onClick={() => addCartItem(service)}>
                   🛒 add to cart
                </button>
             ) : (
-               <span className="notification">added to cart!</span>
+               !currentUser.is_admin && (
+                  <span className="notification">added to cart!</span>
+               )
             )}
          </div>
       </div>

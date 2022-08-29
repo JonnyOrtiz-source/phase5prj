@@ -57,7 +57,7 @@ function DurationsList({ durations, addDuration, handleDurations }) {
          <h2>All Durations</h2>
          <div className="add-btn-container">
             <button className="add-button" onClick={openModal}>
-               Add Duration
+               ➕ Add Duration
             </button>
          </div>
 

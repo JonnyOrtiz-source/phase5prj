@@ -13,7 +13,7 @@ function DurationCard({ duration, deleteDuration }) {
       <div className="card center" key={id}>
          <h3>{time_interval} minutes</h3>
          <div className="card-actions">
-            <button onClick={handleDelete}>🚫</button>
+            <button onClick={handleDelete}>❌ delete</button>
          </div>
       </div>
    );

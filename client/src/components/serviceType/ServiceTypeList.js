@@ -57,7 +57,7 @@ function ServiceTypeList({ serviceTypes, addServiceType, handleServiceTypes }) {
          <h2>All Service Types</h2>
          <div className="add-btn-container">
             <button className="add-button" onClick={openModal}>
-               Add Service Type
+               ➕ Add Service Type
             </button>
          </div>
 

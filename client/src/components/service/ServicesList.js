@@ -79,7 +79,7 @@ function ServicesList({
          {currentUser.is_admin && (
             <div className="add-btn-container">
                <button className="add-button" onClick={openModal}>
-                  Add Service
+                  ➕ Add Service
                </button>
             </div>
          )}
