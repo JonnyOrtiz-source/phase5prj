@@ -1,80 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+# Initialize + Save Durations
+Duration.create(time_interval: 15)
+Duration.create(time_interval: 30)
+Duration.create(time_interval: 45)
 
-# Initialize + Save Services
-p1 = Production.create(
-    title: 'Hamlet', 
-    genre: 'drama', 
-    director: 'Bill Shakespeare', 
-    description: 'The Tragedy of Hamlet, Prince of Denmark', 
-    budget: 100000.00, 
-    image: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Edwin_Booth_Hamlet_1870.jpg', 
-    ongoing: true
-)
-p2 = Production.create(
-    title: 'Cats', 
-    genre: 'musical', 
-    director: 'Andrew Lloyd Webber', 
-    description: 'Jellicles cats sing and dance', 
-    budget: 200000.00, 
-    image: 'https://upload.wikimedia.org/wikipedia/en/3/3e/CatsMusicalLogo.jpg', 
-    ongoing: true
-)
-p3 = Production.create(
-    title: 'Carmen', 
-    genre: 'opera', 
-    director: 'Georges Bizet', 
-    description: 'Don José and Escamillo fight over Carmen', 
-    budget: 100000.00, 
-    image:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Prudent-Louis_Leray_-_Poster_for_the_premi%C3%A8re_of_Georges_Bizet%27s_Carmen.jpg/875px-Prudent-Louis_Leray_-_Poster_for_the_premi%C3%A8re_of_Georges_Bizet%27s_Carmen.jpg', 
-    ongoing: false
-)
-p4 = Production.create(
-    title: 'Swan Lake', 
-    genre: 'ballet', 
-    director: 'Giscard Rasquin and Pyotr Ilyich Tchaikovsky', 
-    description: 'The story of Odette, a princess turned into a swan by an evil sorcerers curse. ', 
-    budget: 50000.00, 
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Swanlakemordkin.jpg', 
-    ongoing: false
-)
+Service.create(name: "Manicure", description: "Regular polish, gel polish, or gel-extensions. Includes sugar scrub, hot towels, and 5 minute massage.", price: 45,image_url: "https://serenity-springs-assets.s3.amazonaws.com/manicure.jpg", service_type_id: 3, duration_id: 6)
+Service.create(name: "Pedicure", description: "Regular or gel polish. Includes sugar scrub, mask, hot towels, and 10 minute massage.", price: 50, image_url: "https://serenity-springs-assets.s3.amazonaws.com/pedicure.jpg", service_type_id: 3, duration_id: 6)
+Service.create(name: "Haircut", description: "Haircut and style.", price: 30, image_url: "https://serenity-springs-assets.s3.amazonaws.com/haircut.jpg", service_type_id: 3, duration_id: 6)
+Service.create(name: "Blowout / Hot Tool styles", description: "Blow dry with a round brush that makes the hair bouncy and voluminous.", price: 50, image_url: "https://serenity-springs-assets.s3.amazonaws.com/blowout.jpg", service_type_id: 3, duration_id: 6)
+Service.create(name: "Henna Color", description: "Henna is a natural alternative to traditional hair color, available in natural hair colors.", price: 40, image_url: "https://serenity-springs-assets.s3.amazonaws.com/hennaColor.jpg", service_type_id: 3, duration_id: 6)
+Service.create(name: "Hair / Scalp treatments", description: "Hair treatments provided can moisturize, add strength, or treat dry scalp depending on clients needs.", price: 25, image_url: "https://serenity-springs-assets.s3.amazonaws.com/hairTreatment.jpg", service_type_id: 3, duration_id: 6)
+Service.create(name: "Free Wig Installation", description: "Let's get your wig on!", price: 0, image_url: "https://serenity-springs-assets.s3.amazonaws.com/wigs.jpg", service_type_id: 3, duration_id: 6)
+Service.create(name: "", description: "", price: , image_url: "", service_type_id: 3, duration_id: 6)
+Service.create(name: "", description: "", price: , image_url: "", service_type_id: 3, duration_id: 6)
+Service.create(name: "", description: "", price: , image_url: "", service_type_id: 3, duration_id: 6)
+Service.create(name: "", description: "", price: , image_url: "", service_type_id: 3, duration_id: 6)
 
-# Initialize + Save Eight Production Roles
-ProductionRole.create(role:'Hamlet', understudy:true, production: p1)
-ProductionRole.create(role:'Ophelia', understudy:true, production: p1)
-ProductionRole.create(role:'Grizabella', understudy:true, production: p2)
-ProductionRole.create(role:'Mr.Mistoffelees', understudy:false, production: p2)
-ProductionRole.create(role:'Carmen', understudy:true, production: p3)
-ProductionRole.create(role:'Don José', understudy:false, production: p3)
-ProductionRole.create(role:'Odette', understudy:true, production: p4)
-ProductionRole.create(role:'Odile', understudy:true, production: p4)
-
-# Initialize + Save Six Users
-u1 = User.create(name: 'Louis', email: 'louis@gmail.com', admin: true, password: "password")
-u2 = User.create(name: 'Grace', email: 'grace@gmail.com', admin: true, password: "password")
-u3 = User.create(name:'Ted', email:'ted@gmail.com', password: "password")
-u4 = User.create(name:'Bill', email:'bill123@gmail.com', password: "password")
-u5 = User.create(name:'Ridly', email:'aliens_r_4real@gmail.com', password: "password")
-u6 = User.create(name:'Bishop', email:'not_a_robot@gmail.com', password: "password")
-
-# Initialize + Save Twelve Tickets
-Ticket.create(user:u1, production:p2, price:65.00)
-Ticket.create(user:u2, production:p2, price:65.00)
-Ticket.create(user:u2, production:p1, price:65.00)
-Ticket.create(user:u3, production:p4, price:65.00)
-Ticket.create(user:u4, production:p3, price:65.00)
-Ticket.create(user:u3, production:p3, price:65.00)
-Ticket.create(user:u5, production:p4, price:65.00)
-Ticket.create(user:u5, production:p3, price:65.00)
-Ticket.create(user:u6, production:p1, price:65.00)
-Ticket.create(user:u6, production:p2, price:65.00)
-Ticket.create(user:u6, production:p3, price:65.00)
-Ticket.create(user:u6, production:p4, price:65.00)
 
 # Confirm Seeding Has Completed
 puts '🌱 Seeding Done!'

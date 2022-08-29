@@ -149,7 +149,7 @@ function NewServiceForm({ addService, durations, serviceTypes }) {
                      handleChange={handleServiceTypeChange}
                   />
                </fieldset>
-               {serviceType === '3' && (
+               {serviceType === '4' && (
                   <fieldset>
                      <Dropdown
                         label="Select duration: "
