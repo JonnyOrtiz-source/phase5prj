@@ -80,9 +80,7 @@ function Register({ handleCurrentUser }) {
                handleCurrentUser(user);
                history.push('/logout');
                history.push('/login');
-               alert(
-                  `Thank you for registering, ${user.first_name}! Please login.`
-               );
+               alert(`Welcome, ${user.first_name}!  Please login below.`);
             });
          } else {
             res.json().then((data) => setError(data.errors));
