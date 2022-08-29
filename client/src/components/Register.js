@@ -93,7 +93,7 @@ function Register({ handleCurrentUser }) {
    return (
       <div>
          <h2>Register</h2>
-         <div className="form-center">
+         <div className="form-container form-center">
             <form onSubmit={handleSubmit}>
                <fieldset>
                   <label>

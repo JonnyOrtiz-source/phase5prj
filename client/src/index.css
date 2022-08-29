@@ -85,6 +85,14 @@ footer {
    color: var(--color-base--1);
 }
 
+.form-container {
+   clear: both;
+}
+
+.form-container input {
+   width: 100%;
+   clear: both;
+}
 .form-center {
    display: flex;
    justify-content: center;
