@@ -25,7 +25,7 @@ function CartList({ cart, setCart }) {
 
    return (
       <div>
-         <h2>Cart</h2>
+         <h2>{cartEl.length === 0 ? 'Empty Cart' : 'Cart'}</h2>
          <div className="wrapper">{cartEl}</div>
       </div>
    );

@@ -165,8 +165,9 @@ footer {
 
 .card {
    /* Add shadows to create the "card" effect */
-   box-shadow: 0 4px 8px 0 var(--color-brand--1);
+   box-shadow: 0 4px 8px 0 var(--color-base--1);
    transition: 0.3s;
+   margin: 0.5rem;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -189,7 +190,7 @@ footer {
 }
 
 img {
-   height: 150px;
+   height: 100px;
    width: auto;
 }
 

@@ -15,7 +15,7 @@ function FavoritesList({ currentUser, handleCurrentUser }) {
 
    return (
       <div>
-         <h2>Faves</h2>
+         <h2>{favoritesEl.length === 0 ? 'No Faves' : 'Faves'}</h2>
          <div className="wrapper">{favoritesEl}</div>
       </div>
    );
