@@ -102,6 +102,7 @@ function Register({ handleCurrentUser }) {
                         id="first_name"
                         value={formData.firstName}
                         onChange={handleChange}
+                        required
                      />
                   </label>
                </fieldset>
@@ -114,6 +115,7 @@ function Register({ handleCurrentUser }) {
                         id="last_name"
                         value={formData.lastName}
                         onChange={handleChange}
+                        required
                      />
                   </label>
                </fieldset>
@@ -126,6 +128,7 @@ function Register({ handleCurrentUser }) {
                         id="email"
                         value={formData.email}
                         onChange={handleChange}
+                        required
                      />
                   </label>
                </fieldset>
@@ -138,6 +141,7 @@ function Register({ handleCurrentUser }) {
                         id="password"
                         value={formData.password}
                         onChange={handleChange}
+                        required
                      />
                   </label>
                </fieldset>
@@ -150,6 +154,7 @@ function Register({ handleCurrentUser }) {
                         id="password_confirmation"
                         value={formData.password_confirmation}
                         onChange={handleChange}
+                        required
                      />
                   </label>
                </fieldset>

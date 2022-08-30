@@ -59,6 +59,7 @@ function Login({ handleCurrentUser }) {
                               id="email"
                               value={formData.email}
                               onChange={handleChange}
+                              required
                            />
                         </label>
                      </fieldset>
@@ -71,6 +72,7 @@ function Login({ handleCurrentUser }) {
                               id="password"
                               value={formData.password}
                               onChange={handleChange}
+                              required
                            />
                         </label>
                      </fieldset>
