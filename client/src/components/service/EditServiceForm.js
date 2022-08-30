@@ -20,8 +20,19 @@ const Dropdown = ({ label, value, options, handleChange, shoeTypes }) => {
 function EditServiceForm({ service, updateService, serviceTypes, durations }) {
    const [message, setMessage] = useState('');
    const [error, setError] = useState('');
-   const [serviceType, setServiceType] = useState('');
-   const [duration, setDuration] = useState('');
+   const [serviceType, setServiceType] = useState(() => {
+      const { id } = serviceTypes.find(
+         (service_type) =>
+            service_type.service_type_name === service.service_type_name
+      );
+      return id;
+   });
+   const [duration, setDuration] = useState(() => {
+      const { id } = durations.find(
+         (duration) => duration.time_interval === service.time_interval
+      );
+      return id;
+   });
 
    const history = useHistory();
 
@@ -169,7 +180,10 @@ function EditServiceForm({ service, updateService, serviceTypes, durations }) {
                      handleChange={handleServiceTypeChange}
                   />
                </fieldset>
-               {serviceType === '3' && (
+
+               {/* TODO: lookup Salon's id in Heroku & change below test before pushing to Heroku (it's 3 locally) */}
+
+               {serviceType === '4' && (
                   <fieldset>
                      <Dropdown
                         label="Select duration: "
