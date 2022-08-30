@@ -181,7 +181,7 @@ function EditServiceForm({ service, updateService, serviceTypes, durations }) {
                   />
                </fieldset>
 
-               {/* TODO: lookup Salon's id in Heroku & change below test before pushing to Heroku (it's 3 locally) */}
+               {/* TODO: lookup Salon's id in Heroku & change below test before pushing to Heroku (it's 3 in the local db) */}
 
                {serviceType === '4' && (
                   <fieldset>
