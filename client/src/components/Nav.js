@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Nav({ handleCurrentUser, currentUser, handleCart }) {
+function Nav({ handleCurrentUser, currentUser, cart, handleCart }) {
    const logout = () => {
       fetch('/logout', {
          method: 'DELETE',
@@ -38,7 +38,9 @@ function Nav({ handleCurrentUser, currentUser, handleCart }) {
                <>
                   <li className="nav-item">
                      <Link className="nav-link" to="/favorites">
-                        Faves
+                        Faves{' '}
+                        {currentUser.favorites.length > 0 &&
+                           `(${currentUser.favorites.length})`}
                      </Link>
                   </li>
                   <li className="nav-item">
@@ -48,18 +50,17 @@ function Nav({ handleCurrentUser, currentUser, handleCart }) {
                   </li>
                   <li className="nav-item">
                      <Link className="nav-link" to="/cart">
-                        Cart
+                        Cart {cart.length > 0 && `(${cart.length})`}
                      </Link>
                   </li>
                </>
             )}
-
-            <li className="nav-item">
-               <Link className="nav-link" to="/login" onClick={logout}>
-                  Logout
-               </Link>
-            </li>
          </ul>
+         {currentUser &&
+            `${currentUser.first_name[0].toUpperCase()}${currentUser.last_name[0].toUpperCase()} logged in.  `}
+         <Link to="/login" onClick={logout}>
+            ⎋
+         </Link>
       </div>
    );
 }

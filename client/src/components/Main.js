@@ -151,6 +151,7 @@ function Main() {
          <Nav
             handleCurrentUser={handleCurrentUser}
             currentUser={currentUser}
+            cart={cart}
             handleCart={handleCart}
          />
          <Switch>
