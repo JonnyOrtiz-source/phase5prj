@@ -9,6 +9,7 @@ function AboutUs() {
             src="https://serenity-springs-assets.s3.amazonaws.com/AboutUs.jpeg"
             alt="Owners' Ariana and Briana"
          />
+         <p>Owners: Ariana on the left, Briana on the right</p>
       </div>
    );
 }

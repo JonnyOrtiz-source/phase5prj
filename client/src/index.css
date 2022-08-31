@@ -35,7 +35,7 @@ code {
 h1 {
    font-size: 2.5rem;
    font-weight: bold;
-   color: var(--color-base--3);
+   color: var(--color-brand--2);
 }
 
 h2 {
@@ -76,7 +76,7 @@ footer {
    font-weight: bold;
    text-align: center;
    background-color: var(--color-brand--1);
-   color: var(--color-base--3);
+   color: var(--color-brand--2);
 }
 
 .nav-item {
@@ -228,4 +228,5 @@ footer {
 #owners {
    height: 300px;
    width: auto;
+   border: 0.5rem outset var(--color-brand--4);
 }
