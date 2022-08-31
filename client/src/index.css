@@ -198,3 +198,29 @@ footer {
 #user-status {
    text-align: right;
 }
+#btn-logout {
+   position: relative;
+   border-bottom: 1px dotted black;
+}
+#btn-logout:before {
+   content: attr(data-hover);
+   visibility: hidden;
+   opacity: 0;
+   width: max-content;
+   background-color: var(--color-base--1);
+   color: var(--color-base--3);
+   text-align: center;
+   border-radius: 5px;
+   padding: 5px 5px;
+   transition: opacity 1s ease-in-out;
+
+   position: absolute;
+   z-index: 1;
+   left: 0;
+   top: 110%;
+}
+
+#btn-logout:hover:before {
+   opacity: 1;
+   visibility: visible;
+}

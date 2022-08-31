@@ -63,8 +63,13 @@ function Nav({ handleCurrentUser, currentUser, cart, handleCart }) {
          </ul>
          <div id="user-status">
             {currentUser &&
-               `${currentUser.first_name[0].toUpperCase()}${currentUser.last_name[0].toUpperCase()} logged in.  `}
-            <Link to="/login" onClick={logout}>
+               `${currentUser.first_name[0].toUpperCase()}${currentUser.last_name[0].toUpperCase()} signed in.  `}
+            <Link
+               to="/login"
+               id="btn-logout"
+               data-hover="logout"
+               onClick={logout}
+            >
                ⎋
             </Link>
          </div>
