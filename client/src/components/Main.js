@@ -12,6 +12,7 @@ import NewServiceForm from './service/NewServiceForm';
 import FavoritesList from './favorite/FavoritesList';
 import Booking from './booking/Booking';
 import CartList from './cart/CartList';
+import AboutUs from './AboutUs';
 
 function Main() {
    const [currentUser, setCurrentUser] = useState(null);
@@ -216,6 +217,10 @@ function Main() {
 
             <Route path="/cart">
                <CartList cart={cart} setCart={handleCart} />
+            </Route>
+
+            <Route path="/aboutus">
+               <AboutUs />
             </Route>
 
             <Route path="/login">

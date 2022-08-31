@@ -33,7 +33,7 @@ code {
 }
 
 h1 {
-   font-size: 3rem;
+   font-size: 2.5rem;
    font-weight: bold;
    color: var(--color-base--3);
 }
@@ -44,8 +44,18 @@ h2 {
 }
 
 h3 {
-   margin: 1rem;
+   margin: 0.5rem;
 }
+
+img {
+   height: 100px;
+   width: auto;
+}
+
+a {
+   text-decoration: none;
+}
+
 footer {
    padding-top: 2.5rem;
    color: var(--color-base--1);
@@ -71,12 +81,11 @@ footer {
 
 .nav-item {
    display: inline;
-   padding: 1.5rem;
+   padding: 0 1.5rem 0 1.5rem;
 }
 
 .nav-link {
-   width: 25%; /* based on # of nav links */
-   text-decoration: none;
+   width: 20%; /* based on # of nav links */
    color: var(--color-base--3);
 }
 
@@ -106,7 +115,6 @@ footer {
    padding: 15px 32px;
    margin: 10px;
    text-align: center;
-   text-decoration: none;
    display: inline-block;
    font-weight: bolder;
    font-size: 1.25rem;
@@ -127,7 +135,6 @@ footer {
 }
 
 #link-cr {
-   text-decoration: none;
    color: var(--color-base--1);
 }
 
@@ -184,11 +191,10 @@ footer {
    float: right;
 }
 
-img {
-   height: 100px;
-   width: auto;
-}
-
 .notification {
    margin: 0.25rem;
+}
+
+#user-status {
+   text-align: right;
 }

@@ -53,14 +53,21 @@ function Nav({ handleCurrentUser, currentUser, cart, handleCart }) {
                         Cart {cart.length > 0 && `(${cart.length})`}
                      </Link>
                   </li>
+                  <li className="nav-item">
+                     <Link className="nav-link" to="/aboutus">
+                        About Us
+                     </Link>
+                  </li>
                </>
             )}
          </ul>
-         {currentUser &&
-            `${currentUser.first_name[0].toUpperCase()}${currentUser.last_name[0].toUpperCase()} logged in.  `}
-         <Link to="/login" onClick={logout}>
-            ⎋
-         </Link>
+         <div id="user-status">
+            {currentUser &&
+               `${currentUser.first_name[0].toUpperCase()}${currentUser.last_name[0].toUpperCase()} logged in.  `}
+            <Link to="/login" onClick={logout}>
+               ⎋
+            </Link>
+         </div>
       </div>
    );
 }
