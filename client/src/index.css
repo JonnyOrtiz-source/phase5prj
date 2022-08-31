@@ -224,3 +224,8 @@ footer {
    opacity: 1;
    visibility: visible;
 }
+
+#owners {
+   height: 300px;
+   width: auto;
+}
