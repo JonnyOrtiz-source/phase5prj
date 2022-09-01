@@ -93,7 +93,7 @@ function ServiceCard({
                      contentLabel="Example Modal"
                   >
                      <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
-                        Add Service
+                        Update Service
                      </h2>
                      <EditServiceForm
                         service={service}
