@@ -45,6 +45,7 @@ h1 {
 h2 {
    text-align: center;
    color: var(--color-brand--1);
+   margin: 2rem;
 }
 
 h3 {
